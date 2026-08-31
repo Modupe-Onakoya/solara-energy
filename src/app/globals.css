@@ -1,7 +1,7 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@custom-variant hover (&:hover);
+@custom-variant group-hover (.group:hover &);
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme: {
   --color-brand-primary: #F97316;
