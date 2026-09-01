@@ -4,105 +4,106 @@ import { useState, useEffect } from "react"
 import Company_logo from "./Company_logo"
 import Image from "next/image"
 import { assets } from "@/assets/asset"
+import { NavItem } from "@/types"
 
 
-const allproducts = [
+const allproducts: NavItem[] = [
     {
-        navheading: "Products",
+        navHeading: "Products",
         // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
         products: [{
             item: "Solar Panels",
-            url: "/"
+            href: "/"
         },
         {
             item: " Solar Battries",
-            url: "/"
+            href: "/"
         },
         {
             item: " Solar Inverter",
-            url: "/"
+            href: "/"
         },
         {
             item: "All-in-one-solar",
-            url: "/"
+            href: "/"
         }, {
             item: " Street Lights",
-            url: "/"
+            href: "/"
         },
         ]
     },
     {
-        navheading: "Solutions",
+        navHeading: "Solutions",
         // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
         products: [{
             item: "Home Solar System",
-            url: "/"
+            href: "/"
         },
         {
             item: "Business Solar System",
-            url: "/"
+            href: "/"
         },
         {
             item: "Solar Home Appliance",
-            url: "/"
+            href: "/"
         },
 
         ]
     },
     {
-        navheading: "Installer",
+        navHeading: "Installer",
         // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
         products: [{
             item: "Book an installer",
-            url: "/"
+            href: "/"
         },
         {
             item: " Become an installer",
-            url: "/"
+            href: "/"
         },
 
         ]
     },
     {
-        navheading: "About ",
+        navHeading: "About ",
         // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
         products: [{
             item: "Store Locator ",
-            url: "/"
+            href: "/"
         },
         {
             item: "Contact Us",
-            url: "/"
+            href: "/"
         },
         {
             item: "Our Impact",
-            url: "/"
+            href: "/"
         },
         {
             item: "News and Blog",
-            url: "/"
+            href: "/"
         },]
     }, {
-        navheading: "Contact",
+        navHeading: "Contact",
         // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
         products: [{
             item: " ",
-            url: "/"
+            href: "/"
         },
         {
             item: "",
-            url: "/"
+            href: "/"
         },
         {
             item: "",
-            url: "/"
+            href: "/"
         },
         {
             item: "",
-            url: "/"
+            href: "/"
         }, {
             item: "",
-            url: "/"
+            href: "/"
         },
         ]
     },
@@ -113,41 +114,76 @@ const allproducts = [
 export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false)
     const [openArrow, setOpenArrow] = useState<number | null>(null)
+    const [desktopNav, setDesktopNav] = useState<string>("")
 
-    useEffect(() => {
-        const handleClickOutside = () => setOpenArrow(null)
-        document.addEventListener("click", handleClickOutside)
-        return () => document.removeEventListener("click", handleClickOutside)
-    }, [])
+
+    // useEffect(() => {
+    //     const handleClickOutside = () => setOpenArrow(null)
+    //     document.addEventListener("click", handleClickOutside)
+    //     return () => document.removeEventListener("click", handleClickOutside)
+    // }, [])
 
     return (
-        <nav className="bg-[#0F172A] px-4 py-4">
-            <div id="mobile-top relative">
+        <nav className="bg-[#0F172A] px-4 py-3 md:px-16 ">
+            <div className="md:flex  justify-between items-center ">
                 <div id="logo-bugger" className="flex  justify-between items-center">
                     <div className="flex items-center gap-2">
                         <Company_logo />
                         <span className="font-bold text-white text-lg ">SolaraEnergy</span>
                     </div>
-                    <button className="space-y-[5px] outline-none" onClick={() => setOpenMenu(!openMenu)}>
+                    <button className="space-y-[5px] outline-none  md:hidden" onClick={() => setOpenMenu(!openMenu)}>
                         <div className={`bg-white w-[18px] h-[2px] transition-all duration-300 outline-none ${openMenu ? "rotate-45 translate-y-[7px]" : ""} `}></div>
                         <div className={`bg-white w-[18px] h-[2px] transition-all duration-300 outline-none ${openMenu ? "opacity-0" : ""} `}></div>
                         <div className={`bg-white w-[18px] h-[2px] transition-all duration-300 outline-none ${openMenu ? "-rotate-45 -translate-y-[7px]" : ""} `}></div>
                     </button>
                 </div>
-                <div id="drop-down" onClick={(e) => e.stopPropagation()} className={` bg-[#0F172A] absolute py-5 text-white left-0 right-0 top-15 px-4 transition-all duration-100 -z-10 space-y-5 ${openMenu ? "translate-y-0 z-10" : "-translate-y-[100%]"} `}>
-
+                {/* desktop */}
+                <div className="md:flex hidden gap-6 items-center">
                     {allproducts.map((product, idx) => (
-                        <div className="relative w-full z-100" key={idx} onClick={(e) => setOpenArrow(prev => prev === idx ? null : idx)}>
+                        <div key={idx} className="relative cursor-pointer" onMouseEnter={() => setDesktopNav(product.navHeading)} onMouseLeave={() => setDesktopNav("")}>
+                            <div className="flex items-center gap-2">
+                                <span className="text-white z-10 hover:text-orange-500 text-xs lg:text-sm">{product.navHeading}</span>
+                                {product.navHeading !== "Contact" ? <Image src={assets.arrowDown} alt="Arrow down" width={20} height={20} className={`w-3 h-3 transition-all duration-300 ${desktopNav === product.navHeading ? "rotate-180" : ""}`} /> : null}
+                            </div>
+                            {
+                                desktopNav === product.navHeading && product.navHeading !== "Contact" ?
+                                    <div className="absolute top-full text-xs bg-white w-[100px] pl-2 py-2 space-y-4 rounded-lg" >
+                                        {product.products.map((pro, idx) => (
+                                            <div key={idx} className="">
+                                                <p>{pro.item}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    : null
+                            }
+                        </div>
+
+                    ))}
+                </div>
+                <div className="flex px-4  justify-center items-center bg-orange-500 py-1 hidden md:flex rounded-lg gap-2">
+                    <span className="text-white text-xs lg:text-sm ">
+                        Get Quote
+                    </span>
+                    <Image src={assets.arrowRight} alt="arrow-right" width={20} height={20} className="w-3 h-3" />
+                </div>
+                {/* mobile */}
+                <div id="drop-down" className={`md:hidden bg-[#0F172A] absolute py-5 text-white left-0 right-0 top-12 px-4 transition-all duration-100 -z-10 space-y-5 ${openMenu ? "translate-y-0 z-10" : "-translate-y-[100%]"} `}>
+                    {allproducts.map((product, idx) => (
+                        <div className="relative w-full z-100" key={idx} onClick={(e) => {
+                            e.stopPropagation()
+                            setOpenArrow(prev => prev === idx ? null : idx)
+                        }}
+                        >
                             <div className="flex items-center justify-between">
-                                <span className="text-sm">{product.navheading}</span>
-                                <div className={` ${openArrow ? "" : ""}`} onClick={() => product.navheading === "Contact" ? setOpenArrow(prev => prev === idx ? null : idx) : null}>
-                                    {product.navheading !== "Contact" && <Image src={assets.arrowDown} alt="Arrow down" width={20} height={20} className={`${idx === openArrow ? "rotate-180" : ""} w-3 h-3`} />}
+                                <span className="text-sm">{product.navHeading}</span>
+                                <div>
+                                    {product.navHeading !== "Contact" && <Image src={assets.arrowDown} alt="Arrow down" width={20} height={20} className={`${idx === openArrow ? "rotate-180" : ""} w-3 h-3`} />}
                                 </div>
                             </div>
                             {idx === openArrow &&
                                 <div className="px-5  space-y-4 py-2">
 
-                                    {product.navheading !== "Contact" && product.products.map((pro, id) => (
+                                    {product.navHeading !== "Contact" && product.products.map((pro, id) => (
 
                                         <div className="flex gap-2 items-center" key={id}>
                                             <div className="w-1 h-1 bg-orange-500 rounded-full"></div>
@@ -160,13 +196,14 @@ export default function Navbar() {
                         </div>
 
                     ))}
-                    <div className="flex w-full justify-center items-center bg-orange-500 py-2 rounded-lg">
+                    <div className="flex w-full justify-center gap-2 items-center bg-orange-500 py-2 rounded-lg">
                         <span>
                             Get Quote
                         </span>
                         <Image src={assets.arrowRight} alt="arrow-right" width={20} height={20} className="w-3 h-3" />
                     </div>
                 </div>
+
             </div>
         </nav >
     )
