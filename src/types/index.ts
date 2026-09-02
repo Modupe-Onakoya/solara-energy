@@ -8,3 +8,9 @@ export interface NavItem {
     navHeading: string,
     products: NavProduct[]
 }
+
+export interface Products {
+    product: string
+    desc: string
+    status: string
+}
