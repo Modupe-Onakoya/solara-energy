@@ -1,4 +1,6 @@
 
+import { ReactNode } from "react"
+
 export interface NavProduct {
     item: string
     href: string
@@ -10,7 +12,19 @@ export interface NavItem {
 }
 
 export interface Products {
-    product: string
+    name: string
+    tagline: string
     desc: string
-    status: string
+    price: string
+    image: string
+    badge: string | null
+    color: string
+}
+
+export interface solution {
+    icon: ReactNode
+    title: string
+    desc: string
+    features: string[]
+    image: string
 }
