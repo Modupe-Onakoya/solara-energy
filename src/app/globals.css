@@ -8,3 +8,19 @@
   --color-brand-dark: #0F172A;
   --color-brand-muted: #F8FAFC;
 }
+
+/* .slide::-webkit-slider-thumb {
+  appearance: none;
+  background-color: aqua;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+}
+
+.slide {
+  appearance: none;
+  width: 200px;
+  height: 16px;
+  background-color: bisque;
+
+} */
