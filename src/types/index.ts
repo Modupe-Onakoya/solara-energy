@@ -28,3 +28,12 @@ export interface solution {
     features: string[]
     image: string
 }
+
+export interface Design {
+    id: string;
+    label: string;
+    icon: string;
+    watts: number;
+    qty: number;
+    unit: string;
+}

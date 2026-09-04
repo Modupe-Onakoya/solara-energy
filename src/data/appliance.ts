@@ -1,5 +1,6 @@
+import { Design } from "@/types";
 
-const appliances = [
+export const appliances: Design[] = [
     { id: "lights", label: "LED Lights", icon: "💡", watts: 10, qty: 6, unit: "bulbs" },
     { id: "fan", label: "Ceiling Fan", icon: "🌀", watts: 75, qty: 3, unit: "fans" },
     { id: "tv", label: "LED TV (43″)", icon: "📺", watts: 80, qty: 1, unit: "TVs" },

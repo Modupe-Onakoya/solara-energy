@@ -3,6 +3,7 @@ import Navbar from "@/component/Navbar";
 import Practise from "@/component/Practise";
 import Product from "@/component/Product";
 import Solutions from "@/component/Solutions";
+import SystemRecommendation from "@/component/SystemRecommendation";
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Product />
       {/* <Practise /> */}
       <Solutions />
+      <SystemRecommendation />
     </div>
   );
 }

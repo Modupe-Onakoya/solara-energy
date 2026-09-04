@@ -4,7 +4,15 @@ import Image from "next/image";
 export default function Hero() {
 
     return (
-        <div className=" pt-30 bg-gray-300">
+        <div className=" pt-30 relative w-full">
+            <video
+                className="absolute inset-0 -z-100 object-cover"
+                src="/video/vid.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+            />
             <div className="md:px-16 px-4">
                 <p className="text-[12px] max-sm:max-w-[250px]  font-bold text-orange-500">CLEAN ENERGY FOR EVERY NIGERIAN  HOME</p>
                 <div className="flex-col flex py-4 md:hidden">
