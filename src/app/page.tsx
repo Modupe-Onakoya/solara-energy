@@ -15,6 +15,8 @@ export default function Home() {
       {/* <Practise /> */}
       <Solutions />
       <SystemRecommendation />
+      {/* <SystemRecommendation /> */}
+
     </div>
   );
 }
