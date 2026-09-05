@@ -3,21 +3,27 @@ import { appliances } from "@/data/appliance"
 import { useState } from "react"
 import { products } from "@/data/product"
 import { Products } from "@/types"
+import { getRecommendation } from "@/utils/utils"
 
 export default function SystemRecommendation() {
     const [selected, setSelected] = useState<string[]>([])
-    const [recommend, setRecommend] = useState<Products | null>(null)
-    const [totalWatts, setTotalWatts] = useState(0)
 
+
+    // function getWatts(): number {
+    //     return appliances
+    //         .filter((a) => selected.includes(a.label))
+    //         .reduce((sum, a) => sum + a.watts, 0)
+
+    // }
     const getWatts = () => {
-        appliances
+        return appliances
             .filter((a) => selected.includes(a.label))
             .reduce((sum, a) => sum + a.watts, 0)
-
     }
 
 
-    function add(label: string): void {
+    const recommend = getRecommendation(getWatts())
+    function add(label: string) {
         if (selected.includes(label)) {
             setSelected(prev => prev.filter((item) => label !== item))
 
@@ -64,10 +70,10 @@ export default function SystemRecommendation() {
                     <p className="max-w-md text-center ">
                         Select the appliances you want to power and your system recommendation will appear here
                     </p>
-                    <p>{totalWatts}</p>
+                    <p>{ }</p>
                 </div>
                 <div>
-                    {recommend?.name}
+                    {recommend?.price}
                 </div>
             </div>
 

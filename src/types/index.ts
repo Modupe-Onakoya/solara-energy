@@ -29,11 +29,22 @@ export interface solution {
     image: string
 }
 
-export interface Design {
+export interface Appliance {
     id: string;
     label: string;
     icon: string;
     watts: number;
     qty: number;
     unit: string;
+}
+
+export interface Recommendation {
+    maxWatts: number
+    system: string
+    price: string
+    panel: string
+    battery: string
+    inverter: string
+    color: string
+    emoji: string
 }
