@@ -48,3 +48,22 @@ export interface Recommendation {
     color: string
     emoji: string
 }
+export interface Brackets {
+    label: string
+    value: number
+    tag: string
+}
+
+export interface WhyUs {
+    icon: String
+    title: string
+    desc: string
+}
+
+export interface Testimonials {
+    name: string
+    role: string
+    text: string
+    avatar: string
+    stars: number
+}

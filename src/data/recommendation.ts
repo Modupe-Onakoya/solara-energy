@@ -33,7 +33,7 @@ export const recommmendation: Recommendation[] = [
         emoji: "🏘️",
     },
     {
-        maxWatts: Infinity,
+        maxWatts: 3000,
         system: "Business — 10kW+",
         price: "From ₦3,200,000",
         panel: "16× 370W Panels",

@@ -1,8 +1,8 @@
 export default function Product() {
 
     return (
-        <h1>
-            hiii
-        </h1>
+        <div>
+            <h1>moon</h1>
+        </div>
     )
 }

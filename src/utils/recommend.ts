@@ -46,7 +46,15 @@ import { Recommendation } from "@/types"
 //     }
 // }
 
-export function getRecommendation(totalWatts: number) {
+export function getRecommendation(totalWatts: number): Recommendation {
     return recommmendation.find(p => totalWatts <= p.maxWatts) ?? recommmendation[recommmendation.length - 1]
 
 }
+
+let totalHours = 8
+
+export function calcKw(num: number) {
+    return (num * totalHours) / 1000
+}
+
+
