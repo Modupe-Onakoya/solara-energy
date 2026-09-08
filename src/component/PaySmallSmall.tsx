@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 
 const plans = [
@@ -53,8 +54,8 @@ export default function PaySmallSmall() {
                                         key={s.name}
                                         onClick={() => setSelectedSystem(i)}
                                         className={`flex flex-col items-start p-4 rounded-xl border text-left transition-all ${selectedSystem === i
-                                                ? "border-orange-500 bg-orange-50 shadow-sm"
-                                                : "border-slate-200 bg-white hover:border-slate-300"
+                                            ? "border-orange-500 bg-orange-50 shadow-sm"
+                                            : "border-slate-200 bg-white hover:border-slate-300"
                                             }`}
                                     >
                                         <span className={`text-sm font-semibold ${selectedSystem === i ? "text-orange-600" : "text-slate-800"}`}>{s.name}</span>
@@ -77,8 +78,8 @@ export default function PaySmallSmall() {
                                         key={plan.months}
                                         onClick={() => setSelectedPlan(i)}
                                         className={`relative flex flex-col items-center p-4 rounded-xl border transition-all ${selectedPlan === i
-                                                ? "border-orange-500 bg-orange-50"
-                                                : "border-slate-200 bg-white hover:border-slate-300"
+                                            ? "border-orange-500 bg-orange-50"
+                                            : "border-slate-200 bg-white hover:border-slate-300"
                                             }`}
                                     >
                                         {selectedPlan === i && (

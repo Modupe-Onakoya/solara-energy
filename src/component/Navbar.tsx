@@ -4,6 +4,7 @@ import Company_logo from "./Company_logo"
 import Image from "next/image"
 import { assets } from "@/assets/asset"
 import { allproducts } from "@/data/navbar"
+import Link from "next/link"
 export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false)
     const [openArrow, setOpenArrow] = useState<number | null>(null)
@@ -17,7 +18,7 @@ export default function Navbar() {
     // }, [])
 
     return (
-        <nav className="bg-[#0F172A] px-4 py-3 md:px-16 ">
+        <div className="bg-[#0F172A] px-4 py-3 md:px-16 ">
             <div className="md:flex  justify-between items-center ">
                 <div id="logo-bugger" className="flex  justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -40,10 +41,10 @@ export default function Navbar() {
                             </div>
                             {
                                 desktopNav === product.navHeading && product.navHeading !== "Contact" ?
-                                    <div className="absolute top-full text-xs bg-white w-[100px] pl-2 py-2 space-y-4 rounded-lg" >
+                                    <div className="absolute top-full text-xs z-100 bg-white w-[100px] pl-1 pr-1 py-2 space-y-4 rounded-lg" >
                                         {product.products.map((pro, idx) => (
-                                            <div key={idx} className="">
-                                                <p>{pro.item}</p>
+                                            <div key={idx} className="hover:bg-gray-300 py-1">
+                                                <Link href={pro.href}>{pro.item}</Link>
                                             </div>
                                         ))}
                                     </div>
@@ -98,6 +99,6 @@ export default function Navbar() {
                 </div>
 
             </div>
-        </nav >
+        </div >
     )
 }

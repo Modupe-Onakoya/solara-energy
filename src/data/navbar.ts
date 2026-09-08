@@ -7,7 +7,7 @@ export const allproducts: NavItem[] = [
         // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
         products: [{
             item: "Solar Panels",
-            href: "/"
+            href: "/solar-panel"
         },
         {
             item: " Solar Battries",

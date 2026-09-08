@@ -35,7 +35,7 @@ export default function SystemRecommendation() {
 
 
     return (
-        <div className="px-4 flex flex-col items-center">
+        <div className="px-4 flex flex-col items-center py-15">
 
             <p className="text-orange-500">System Designer</p>
             <p className="text-[#0F172A] text-2xl font-bold text-center">What Do You Want to Power?</p>

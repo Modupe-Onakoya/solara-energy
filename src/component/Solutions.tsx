@@ -3,11 +3,11 @@ import { solutions } from "@/data/solution";
 export default function Solutions() {
     return (
         <section className="py-20" style={{ backgroundColor: "#F8FAFC" }}>
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="text-center mb-14">
+            <div className="max-w-7xl  px-6">
+                <div className=" mb-14">
                     <p className="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-2">Solutions</p>
                     <h2 className="text-slate-900 font-bold text-4xl">The Right Fit for Every Need</h2>
-                    <p className="text-slate-500 text-lg mt-3 max-w-xl mx-auto">Whether you're powering a single room or an entire factory, we have a solution that works.</p>
+                    <p className="text-slate-500 text-lg mt-3 max-w-xl ">Whether you're powering a single room or an entire factory, we have a solution that works.</p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-6">
