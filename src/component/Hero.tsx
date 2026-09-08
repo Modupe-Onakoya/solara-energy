@@ -6,7 +6,7 @@ export default function Hero() {
     return (
         <div className=" pt-30 relative w-full">
             <video
-                className="absolute inset-0 -z-100 object-cover"
+                className="absolute inset-0 -z-100 object-contain w-full"
                 src="/video/vid.mp4"
                 autoPlay
                 muted

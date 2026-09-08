@@ -67,3 +67,23 @@ export interface Testimonials {
     avatar: string
     stars: number
 }
+
+export interface ProductVariant {
+    name: string;
+    capacity: string;
+    price: number;
+    specs: { label: string; value: string }[];
+    highlights: string[];
+};
+
+export interface Product {
+    slug: string;
+    name: string;
+    tagline: string;
+    description: string;
+    image: string;
+    icon: string;
+    variants: ProductVariant[];
+    useCases: string[];
+    faq: { q: string; a: string }[];
+};
