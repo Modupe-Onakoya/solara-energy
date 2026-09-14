@@ -1,14 +1,11 @@
-
-import { produce } from "@/data/produce"
-import ProductDetail from "@/component/ProductDetail"
-import Link from "next/link"
 import { Props } from "@/types"
+import { solution } from "@/data/pageSolutions"
+import Link from "next/link"
+import PageSolution from "@/component/PageSolution"
+export default async function SolutionsPage({ params }: Props) {
 
-
-export default async function ProductPage({ params }: Props) {
     const { slug } = await params
-    const product = produce.find(p => p.slug === slug)
-
+    const product = solution.find(s => s.slug === slug)
     if (!product) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -21,6 +18,5 @@ export default async function ProductPage({ params }: Props) {
             </div>
         )
     }
-
-    return <ProductDetail product={product} />
+    return <PageSolution solution={product} />
 }

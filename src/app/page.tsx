@@ -1,6 +1,7 @@
 import BillCalculator from "@/component/BillCalculator";
 import Consultation from "@/component/Consultation";
 import Hero from "@/component/Hero";
+import HomePaySmall from "@/component/HomePaySmall";
 import HomePaySmallSmall from "@/component/HomePaySmallSmall";
 import HomeProducts from "@/component/HomeProduct";
 import Installers from "@/component/Installer";
@@ -8,6 +9,7 @@ import Pay from "@/component/Pay";
 import PaySmallSmall from "@/component/PaySmallSmall";
 import Practise from "@/component/Practise";
 import Product from "@/component/Product";
+import Solution from "@/component/Solution";
 import Solutions from "@/component/Solutions";
 import SystemRecommendation from "@/component/SystemRecommendation";
 import Testimonials from "@/component/Testimonials";
@@ -23,10 +25,12 @@ export default function Home() {
       <HomeProducts />
       {/* <Product /> */}
       {/* <Practise /> */}
-      <Solutions />
+      <Solution />
+      {/* <Solutions /> */}
       <Tools />
       {/* <Pay /> */}
-      <HomePaySmallSmall />
+      <HomePaySmall />
+      {/* <HomePaySmallSmall /> */}
       {/* <PaySmallSmall /> */}
       <WhyUs />
       <Testimonials />

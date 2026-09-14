@@ -87,3 +87,26 @@ export interface Product {
     useCases: string[];
     faq: { q: string; a: string }[];
 };
+
+export interface Props {
+    params: Promise<{ slug: string }>
+}
+
+export type SolutionSystem = {
+    name: string;
+    capacity: string;
+    price: number;
+    image: string;
+    powers: string[];
+    specs: { label: string; value: string }[];
+};
+
+export interface Solution {
+    slug: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    heroImage: string;
+    systems: SolutionSystem[];
+    benefits: { icon: string; title: string; desc: string }[];
+};

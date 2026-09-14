@@ -11,7 +11,7 @@ export const allproducts: NavItem[] = [
         },
         {
             item: " Solar Battries",
-            href: "/products/solar-battries"
+            href: "/products/solar-batteries"
         },
         {
             item: " Solar Inverter",
@@ -31,7 +31,7 @@ export const allproducts: NavItem[] = [
         // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
         products: [{
             item: "Home Solar System",
-            href: "/"
+            href: "/solutions/home-solar"
         },
         {
             item: "Business Solar System",
@@ -49,7 +49,7 @@ export const allproducts: NavItem[] = [
         // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
         products: [{
             item: "Book an installer",
-            href: "/"
+            href: "/becomeInstaller"
         },
         {
             item: " Become an installer",
