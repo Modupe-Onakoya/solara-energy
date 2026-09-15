@@ -64,7 +64,7 @@ export default function HomeProducts() {
 
                         {/* CTA Button */}
                         <Link
-                            href="/products"
+                            href="/iron"
                             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-500 text-white font-semibold text-sm hover:bg-orange-600 transition-colors"
                         >
                             View All Products

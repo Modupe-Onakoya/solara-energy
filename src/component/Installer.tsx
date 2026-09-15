@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Installers() {
     return (
         <section className="py-20 bg-white">
@@ -22,14 +24,14 @@ export default function Installers() {
                                 Connect with a certified SolarFlow installer near you. We have trained technicians in 30+ cities across Nigeria — available 7 days a week.
                             </p>
                             <div className="mt-auto">
-                                <a
-                                    href="#"
+                                <Link
+                                    href="becomeInstaller"
                                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110"
                                     style={{ backgroundColor: "#F97316" }}
                                 >
                                     Find an Installer Near Me
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -59,16 +61,14 @@ export default function Installers() {
                         </div>
 
                         <div className="mt-auto flex gap-3">
-                            <a
-                                href="#"
+                            <Link href="apply-installer"
+
                                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110"
                                 style={{ backgroundColor: "#0F172A" }}
                             >
                                 Apply Now
-                            </a>
-                            <a href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-slate-600 text-sm border border-slate-200 hover:bg-slate-50 transition-all">
-                                Learn More
-                            </a>
+                            </Link>
+
                         </div>
                     </div>
                 </div>

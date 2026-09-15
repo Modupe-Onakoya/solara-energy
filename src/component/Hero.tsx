@@ -5,14 +5,15 @@ export default function Hero() {
 
     return (
         <div className=" pt-30 relative w-full">
-            <video
+            {/* <video
                 className="absolute inset-0 -z-100 object-contain w-full"
                 src="/video/vid.mp4"
                 autoPlay
                 muted
                 loop
                 playsInline
-            />
+            /> */}
+            <img src="/img/heroImg.jpg" alt="" className="absolute -z-10 object-cover w-full inset-0" />
             <div className="md:px-16 px-4">
                 <p className="text-[12px] max-sm:max-w-[250px]  font-bold text-orange-500">CLEAN ENERGY FOR EVERY NIGERIAN  HOME</p>
                 <div className="flex-col flex py-4 md:hidden">
@@ -52,19 +53,19 @@ export default function Hero() {
             </div>
 
             <div className="bg-[#0F172A] grid grid-cols-2 md:grid-cols-4 gap-1 px-4 py-4 text-center md:px-16 ">
-                <div className=" h-fit bg-zinc-700 px-4 py-4 flex flex-col gap-2">
+                <div className=" h-fit bg-[#0F172A] px-4 py-4 flex flex-col gap-2">
                     <span className="text-2xl font-bold text-white ">2,400+</span>
                     <span className="text-[10px]  text-white">Homes Powered</span>
                 </div>
-                <div className=" h-fit bg-zinc-700 px-4 py-4 flex flex-col gap-2">
+                <div className=" h-fit bg-[#0F172A] px-4 py-4 flex flex-col gap-2">
                     <span className="text-2xl font-bold text-white">87%</span>
                     <span className="text-[10px] text-white">Average Billings Savings</span>
                 </div>
-                <div className=" h-fit bg-zinc-700 px-4 py-4 flex flex-col gap-2">
+                <div className=" h-fit bg-[#0F172A] px-4 py-4 flex flex-col gap-2">
                     <span className="text-2xl font-bold text-white">15 MW</span>
                     <span className="text-[10px]  text-white">Capacity Installed</span>
                 </div>
-                <div className=" h-fit bg-zinc-700 px-4 py-4 flex flex-col gap-2">
+                <div className=" h-fit bg-blue-800 px-4 py-4 flex flex-col gap-2">
                     <span className="text-2xl font-bold text-white">25 Yrs</span>
                     <span className="text-[10px] text-white">Productivity Warranty</span>
                 </div>

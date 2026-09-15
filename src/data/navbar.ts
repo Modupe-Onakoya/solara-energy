@@ -35,11 +35,11 @@ export const allproducts: NavItem[] = [
         },
         {
             item: "Business Solar System",
-            href: "/"
+            href: "/solutions/business-solar"
         },
         {
             item: "Solar Home Appliance",
-            href: "/"
+            href: "/solutions/solar-appliances"
         },
 
         ]
@@ -53,7 +53,7 @@ export const allproducts: NavItem[] = [
         },
         {
             item: " Become an installer",
-            href: "/"
+            href: "/apply-installer"
         },
 
         ]
@@ -62,45 +62,39 @@ export const allproducts: NavItem[] = [
         navHeading: "About ",
         // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
         products: [{
-            item: "Store Locator ",
-            href: "/"
+            item: "Contact and locate us ",
+            href: "/contact"
         },
         {
-            item: "Contact Us",
-            href: "/"
-        },
-        {
-            item: "Our Impact",
-            href: "/"
-        },
-        {
-            item: "News and Blog",
-            href: "/"
-        },]
-    }, {
-        navHeading: "Contact",
-        // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
-        products: [{
-            item: " ",
-            href: "/"
-        },
-        {
-            item: "",
-            href: "/"
-        },
-        {
-            item: "",
-            href: "/"
-        },
-        {
-            item: "",
-            href: "/"
-        }, {
-            item: "",
-            href: "/"
+            item: "About us",
+            href: "/about"
         },
         ]
     },
+    // {
+    //     navHeading: "Contact",
+    //     // product: [{"Solar Panels, Solar Battries, Solar Inverter, All-in-one-solar, Street Lights"]
+    //     products: [{
+    //         item: " ",
+    //         href: "/"
+    //     },
+    //     {
+    //         item: "",
+    //         href: "/"
+    //     },
+    //     {
+    //         item: "",
+    //         href: "/"
+    //     },
+    //     {
+    //         item: "",
+    //         href: "/"
+    //     }, {
+    //         item: "",
+    //         href: "/"
+    //     },
+    //     ]
+    // },
 
 
 ]
