@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Hero() {
 
     return (
-        <div className=" pt-30 relative w-full">
+        <div className=" pt-30 relative w-full h-[100vh]">
             {/* <video
                 className="absolute inset-0 -z-100 object-contain w-full"
                 src="/video/vid.mp4"
@@ -52,7 +52,7 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="bg-[#0F172A] grid grid-cols-2 md:grid-cols-4 gap-1 px-4 py-4 text-center md:px-16 ">
+            {/* <div className="bg-[#0F172A] grid grid-cols-2 md:grid-cols-4 gap-1 px-4 py-4 text-center md:px-16 absolute bottom-0 left-0 right-0">
                 <div className=" h-fit bg-[#0F172A] px-4 py-4 flex flex-col gap-2">
                     <span className="text-2xl font-bold text-white ">2,400+</span>
                     <span className="text-[10px]  text-white">Homes Powered</span>
@@ -69,7 +69,7 @@ export default function Hero() {
                     <span className="text-2xl font-bold text-white">25 Yrs</span>
                     <span className="text-[10px] text-white">Productivity Warranty</span>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )

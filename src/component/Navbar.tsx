@@ -5,11 +5,23 @@ import Image from "next/image"
 import { assets } from "@/assets/asset"
 import { allproducts } from "@/data/navbar"
 import Link from "next/link"
+import { createClient } from "@/lib/client"
+import { useRouter } from "next/navigation"
+
 export default function Navbar() {
+    const supabase = createClient()
+    const router = useRouter()
     const [openMenu, setOpenMenu] = useState(false)
     const [openArrow, setOpenArrow] = useState<number | null>(null)
     const [desktopNav, setDesktopNav] = useState<string>("")
 
+    async function signOut() {
+
+        await supabase.auth.signOut()
+        router.push("/login")
+        console.log("done")
+        // alert("looged out")
+    }
 
     // useEffect(() => {
     //     const handleClickOutside = () => setOpenArrow(null)
@@ -18,7 +30,7 @@ export default function Navbar() {
     // }, [])
 
     return (
-        <div className="bg-[#0F172A] px-4 py-3 md:px-16 ">
+        <div className="bg-[#0F172A] px-4 py-3 md:px-16 fixed left-0 right-0 z-100">
             <div className="md:flex  justify-between items-center ">
                 <div id="logo-bugger" className="flex  justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -54,7 +66,7 @@ export default function Navbar() {
 
                     ))}
                 </div>
-                <div className="flex px-4  justify-center items-center bg-orange-500 py-1 hidden md:flex rounded-lg gap-2">
+                <div className="flex px-4  justify-center items-center bg-orange-500 py-1 hidden md:flex rounded-lg gap-2 " onClick={() => signOut()}>
                     <span className="text-white text-xs lg:text-sm ">
                         Get Quote
                     </span>
@@ -90,8 +102,8 @@ export default function Navbar() {
                         </div>
 
                     ))}
-                    <div className="flex w-full justify-center gap-2 items-center bg-orange-500 py-2 rounded-lg">
-                        <span>
+                    <div className="flex w-full justify-center gap-2 items-center bg-orange-500 py-2 rounded-lg z-100"  >
+                        <span >
                             Get Quote
                         </span>
                         <Image src={assets.arrowRight} alt="arrow-right" width={20} height={20} className="w-3 h-3" />
