@@ -5,16 +5,20 @@ import { redirect } from "next/navigation"
 
 export default async function Dashboard() {
     const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const { data: { user } } = await supabase.auth.getUser();
 
-    if (!user) redirect("/login")
+    if (!user) redirect("/sign-up")
 
     // format date joined
     const dateJoined = new Date(user.created_at).toLocaleDateString("en-NG", {
         year: "numeric",
         month: "long",
         day: "numeric"
+
+
     })
+    const { data: savings } = await supabase.from("calculations").select("monthly_savings,user_id")
+    console.log(savings)
 
     return (
         <div className="min-h-screen bg-slate-50">
@@ -26,8 +30,16 @@ export default async function Dashboard() {
                     {/* <LogoutButton /> */}
                 </div>
             </div>
+            {savings?.map((p) => (
+                <div>
+                    {
+                        p.monthly_savings
+                    }
+                </div>
+            ))}
 
             <div className="max-w-5xl mx-auto px-6 py-10 space-y-8">
+
 
                 {/* Welcome Card */}
                 <div className="bg-white rounded-2xl border border-slate-100 shadow-sm px-6 py-6">

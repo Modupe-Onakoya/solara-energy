@@ -1,6 +1,8 @@
 "use client"
 import { brackets } from "@/data/billCalculator";
-import { useState } from "react"
+import { createClient } from "@/lib/client";
+import { error } from "console";
+import { useEffect, useState } from "react"
 
 const NAIRA_PER_KWH = 225; // current NEPA tariff estimate
 const SOLAR_SAVINGS_PCT = 0.87;
@@ -13,6 +15,7 @@ function getSystemRec(monthlyBill: number) {
 }
 
 export default function BillCalculator() {
+    const supabase = createClient()
     const [selected, setSelected] = useState<number | null>(null);
     const [custom, setCustom] = useState("");
 
@@ -27,6 +30,29 @@ export default function BillCalculator() {
     const paybackYears = rec ? rec.payback : 0;
     const twentyYrSavings = rec ? Math.round(annualSavings * 20 - rec.price) : 0;
 
+    async function updateTable() {
+        if (selected !== null) {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                return
+            }
+            const { data, error } = await supabase.from("calculations").insert({
+                user_id: user.id,
+                monthly_savings: annualBill
+            })
+            if (error) {
+                console.log("INSERT ERROR:", error.message)
+                return
+            }
+
+            console.log("INSERT SUCCESS:", data)
+        }
+
+    }
+
+    useEffect(() => {
+        updateTable()
+    }, [selected])
     return (
         <section className="py-20" style={{ backgroundColor: "#0F172A" }}>
             <div className="max-w-7xl mx-auto px-6">

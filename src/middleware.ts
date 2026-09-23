@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
 
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
         {
             cookies: {
                 getAll() { return request.cookies.getAll() },
@@ -28,9 +28,13 @@ export async function middleware(request: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser()
 
     // if user is not logged in and tries to visit dashboard → send to login
-    if (!user && request.nextUrl.pathname.startsWith("/")) {
+    if (!user && request.nextUrl.pathname.startsWith("/dashboard")) {
         return NextResponse.redirect(new URL("/login", request.url))
     }
+
+    // if (!user && request.nextUrl.pathname.startsWith("/")) {
+    //     return NextResponse.redirect(new URL("/login", request.url))
+    // }
 
     // if user is already logged in and tries to visit login/signup → send to dashboard
     if (user && (request.nextUrl.pathname.startsWith("/login") || request.nextUrl.pathname.startsWith("/signup"))) {
