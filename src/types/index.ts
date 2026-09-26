@@ -81,6 +81,7 @@ export interface Product {
     name: string;
     tagline: string;
     description: string;
+    desc: string;
     image: string;
     icon: string;
     variants: ProductVariant[];

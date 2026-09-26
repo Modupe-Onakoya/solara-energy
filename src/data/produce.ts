@@ -7,6 +7,7 @@ export const produce: Product[] = [
         tagline: "Mono PERC & Bifacial",
         description:
             "Solar panels convert sunlight directly into electricity using photovoltaic cells. Our panels use Mono PERC technology — the same used in utility-scale power plants — delivering up to 22% efficiency even in Nigeria's cloudy harmattan season. They're the foundation of every solar system we install.",
+        desc: "Solar panels convert sunlight directly into electricity using photovoltaic cells.",
         image: "https://images.unsplash.com/photo-1589276534126-adef63a95e05?w=1200&h=600&fit=crop&auto=format",
         icon: "☀️",
         variants: [
@@ -52,6 +53,7 @@ export const produce: Product[] = [
         tagline: "Lithium & Gel Options",
         description:
             "A solar battery stores the energy your panels generate during the day so you can use it at night or during a grid outage. Our lithium iron phosphate (LFP) batteries are the safest chemistry available — no thermal runaway, no toxic fumes — and they last 3× longer than lead-acid alternatives.",
+        desc: "A solar battery stores the energy your panels generate during the day so you can use it at night or during a grid outage.",
         image: "https://images.unsplash.com/photo-1589275776107-e193042128bd?w=1200&h=600&fit=crop&auto=format",
         icon: "🔋",
         variants: [
@@ -97,6 +99,7 @@ export const produce: Product[] = [
         tagline: "Hybrid & Off-Grid",
         description:
             "An inverter is the brain of your solar system. It converts DC electricity from your panels and batteries into the 240V AC power your appliances use. Our hybrid inverters go further — they manage solar input, battery charging, and grid/generator backup automatically, so you never notice a power cut.",
+        desc: "An inverter is the brain of your solar system.",
         image: "https://images.unsplash.com/photo-1635424709870-cdc6e64f0e20?w=1200&h=600&fit=crop&auto=format",
         icon: "⚡",
         variants: [
@@ -142,6 +145,7 @@ export const produce: Product[] = [
         tagline: "Solar + Battery + Inverter",
         description:
             "Our All-in-One Power Generator bundles solar panels, a lithium battery, and a hybrid inverter into a single weatherproof unit. No installation van, no electrician required — plug in the solar cable, plug in your appliances, and you're powered. Perfect for apartments, shops, and anyone who rents.",
+        desc: "Our All-in -One Power Generator bundles solar panels, a lithium battery, and a hybrid inverter into a single weatherproof unit.",
         image: "https://images.unsplash.com/photo-1655300256335-beef51a914fe?w=1200&h=600&fit=crop&auto=format",
         icon: "🔌",
         variants: [
@@ -187,6 +191,7 @@ export const produce: Product[] = [
         tagline: "Autonomous LED Lighting",
         description:
             "Our solar street lights are completely self-contained — panel, battery, LED, and smart controller in one pole-mounted unit. They turn on at dusk, turn off at dawn, and survive 3 consecutive cloudy days without sunshine. Zero electricity bills, zero wiring runs, zero grid dependency.",
+        desc: "Our solar street lights are completely self-contained — panel, battery, LED, and smart controller in one pole-mounted unit.",
         image: "https://images.unsplash.com/photo-1730807908064-c087959dd52c?w=1200&h=600&fit=crop&auto=format",
         icon: "🌟",
         variants: [

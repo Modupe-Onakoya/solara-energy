@@ -31,22 +31,30 @@ export default function BillCalculator() {
     const twentyYrSavings = rec ? Math.round(annualSavings * 20 - rec.price) : 0;
 
     async function updateTable() {
-        if (selected !== null) {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) {
-                return
-            }
-            const { data, error } = await supabase.from("calculations").insert({
-                user_id: user.id,
-                monthly_savings: annualBill
-            })
-            if (error) {
-                console.log("INSERT ERROR:", error.message)
-                return
-            }
-
-            console.log("INSERT SUCCESS:", data)
+        if (bill <= 0 || !rec) return
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+            return
         }
+        const { data, error } = await supabase.from("calculations").insert({
+            user_id: user.id,
+            monthly_bill: bill,
+            yearly_bill: annualBill,
+            five_years: annualBill * 5,
+            monthly_savings: monthlySavings,
+            yearly_savings: annualSavings,
+            payback_period: paybackYears,
+            system_name: rec.name,
+            system_price: rec.price,
+
+        })
+        if (error) {
+            console.log("INSERT ERROR:", error.message)
+            return
+        }
+
+        console.log("INSERT SUCCESS:", data)
+
 
     }
 

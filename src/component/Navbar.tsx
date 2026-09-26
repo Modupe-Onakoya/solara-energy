@@ -7,6 +7,7 @@ import { allproducts } from "@/data/navbar"
 import Link from "next/link"
 import { createClient } from "@/lib/client"
 import { useRouter } from "next/navigation"
+import NavbarDropDown from "./NavbarDropDown"
 
 export default function Navbar() {
     const supabase = createClient()
@@ -30,7 +31,7 @@ export default function Navbar() {
     // }, [])
 
     return (
-        <div className="bg-[#0F172A] px-4 py-3 md:px-16 fixed left-0 right-0 z-100">
+        <div className="bg-[#0F172A] px-4 py-3 md:px-16 fixed left-0 right-0 z-100 w-full">
             <div className="md:flex  justify-between items-center ">
                 <div id="logo-bugger" className="flex  justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -44,14 +45,32 @@ export default function Navbar() {
                     </button>
                 </div>
                 {/* desktop */}
-                <div className="md:flex hidden gap-6 items-center">
+                <div className="md:flex hidden gap-6 items-center ">
                     {allproducts.map((product, idx) => (
-                        <div key={idx} className="relative cursor-pointer" onMouseEnter={() => setDesktopNav(product.navHeading)} onMouseLeave={() => setDesktopNav("")}>
+                        <div key={idx} className=" cursor-pointer group border border-white " onClick={() => setDesktopNav(product.navHeading)} >
                             <div className="flex items-center gap-2">
-                                <span className="text-white z-10 hover:text-orange-500 text-xs lg:text-sm">{product.navHeading}</span>
-                                {product.navHeading !== "Contact" ? <Image src={assets.arrowDown} alt="Arrow down" width={20} height={20} className={`w-3 h-3 transition-all duration-300 ${desktopNav === product.navHeading ? "rotate-180" : ""}`} /> : null}
+                                <span className={`text-white z-10 text-xs lg:text-sm decoration-orange-500 group-hover:underline group-hover:underline-offset-8 `}>{product.navHeading}</span>
                             </div>
-                            {
+                            <div className={`${desktopNav === "Products" ? "block" : "hidden"} `}>
+                                <NavbarDropDown />
+
+                            </div>
+
+                            {/* onMouseEnter={() => setDesktopNav(product.navHeading)} onMouseLeave={() => setDesktopNav("")} */}
+                            {/* ${desktopNav === product.navHeading && "group-hover:text-red-500"} */}
+                            {/* {
+                                desktopNav === product.navHeading &&
+                                (
+                                    <div onMouseEnter={() => setDesktopNav(product.navHeading)} className={` absolute top-full text-xs z-100 bg-white w-[100px] pl-1 pr-1 py-2 space-y-4 rounded-lg ${desktopNav === product.navHeading && "group-hover:blcok"}`} >
+                                        {product.products.map((pro, idx) => (
+                                            <div key={idx} className="hover:bg-gray-300 py-1">
+                                                <Link href={pro.href}>{pro.item}</Link>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )
+                            } */}
+                            {/* {
                                 desktopNav === product.navHeading && product.navHeading !== "Contact" ?
                                     <div className="absolute top-full text-xs z-100 bg-white w-[100px] pl-1 pr-1 py-2 space-y-4 rounded-lg" >
                                         {product.products.map((pro, idx) => (
@@ -61,7 +80,7 @@ export default function Navbar() {
                                         ))}
                                     </div>
                                     : null
-                            }
+                            } */}
                         </div>
 
                     ))}

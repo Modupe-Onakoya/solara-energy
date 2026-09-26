@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 
 export default async function Dashboard() {
     const supabase = await createClient()
+
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) redirect("/sign-up")
@@ -17,8 +18,12 @@ export default async function Dashboard() {
 
 
     })
-    const { data: savings } = await supabase.from("calculations").select("monthly_savings,user_id")
-    console.log(savings)
+    // in dashboard/page.tsx
+    const { data: calculations } = await supabase
+        .from("calculations")
+        .select("*")
+        .order("created_at", { ascending: false })  // newest first
+    console.log(calculations)
 
     return (
         <div className="min-h-screen bg-slate-50">
@@ -30,13 +35,8 @@ export default async function Dashboard() {
                     {/* <LogoutButton /> */}
                 </div>
             </div>
-            {savings?.map((p) => (
-                <div>
-                    {
-                        p.monthly_savings
-                    }
-                </div>
-            ))}
+
+
 
             <div className="max-w-5xl mx-auto px-6 py-10 space-y-8">
 
@@ -82,19 +82,76 @@ export default async function Dashboard() {
                 </div>
 
                 {/* My Calculations */}
+                {/* My Calculations */}
                 <div className="bg-white rounded-2xl border border-slate-100 shadow-sm px-6 py-6">
                     <h3 className="text-slate-900 font-bold text-lg mb-4">My Calculations</h3>
-                    <div className="flex flex-col items-center justify-center py-10 text-center">
-                        <div className="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center mb-3">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path d="M10 4v12M4 10h12" stroke="#F97316" strokeWidth="1.5" strokeLinecap="round" />
-                            </svg>
+
+                    {!calculations || calculations.length === 0 ? (
+                        // empty state
+                        <div className="flex flex-col items-center justify-center py-10 text-center">
+                            <div className="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center mb-3">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M10 4v12M4 10h12" stroke="#F97316" strokeWidth="1.5" strokeLinecap="round" />
+                                </svg>
+                            </div>
+                            <p className="text-slate-500 text-sm">No calculations yet</p>
+                            <a href="/electricity-cost" className="text-orange-500 text-sm font-semibold mt-1 hover:underline">
+                                Calculate your savings →
+                            </a>
                         </div>
-                        <p className="text-slate-500 text-sm">No calculations yet</p>
-                        <a href="/electricity-cost" className="text-orange-500 text-sm font-semibold mt-1 hover:underline">
-                            Calculate your savings →
-                        </a>
-                    </div>
+                    ) : (
+                        // show calculations
+                        <div className="space-y-4">
+                            {calculations.map((calc, i) => (
+                                <div key={i} className="rounded-xl border border-slate-100 px-5 py-4">
+
+                                    {/* Top row */}
+                                    <div className="flex items-center justify-between mb-3">
+                                        <div>
+                                            <p className="text-slate-900 font-semibold text-sm">{calc.system_name}</p>
+                                            <p className="text-slate-400 text-xs mt-0.5">
+                                                {new Date(calc.created_at).toLocaleDateString("en-NG", {
+                                                    year: "numeric", month: "long", day: "numeric"
+                                                })}
+                                            </p>
+                                        </div>
+                                        <span className="text-orange-500 font-bold text-sm">
+                                            ₦{calc.system_price?.toLocaleString()}
+                                        </span>
+                                    </div>
+
+                                    {/* Stats grid */}
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                        <div className="bg-slate-50 rounded-lg px-3 py-2">
+                                            <p className="text-slate-400 text-xs">Monthly Bill</p>
+                                            <p className="text-slate-900 font-semibold text-sm">
+                                                ₦{calc.monthly_bill?.toLocaleString()}
+                                            </p>
+                                        </div>
+                                        <div className="bg-slate-50 rounded-lg px-3 py-2">
+                                            <p className="text-slate-400 text-xs">Monthly Savings</p>
+                                            <p className="text-green-600 font-semibold text-sm">
+                                                ₦{calc.monthly_savings?.toLocaleString()}
+                                            </p>
+                                        </div>
+                                        <div className="bg-slate-50 rounded-lg px-3 py-2">
+                                            <p className="text-slate-400 text-xs">Yearly Savings</p>
+                                            <p className="text-green-600 font-semibold text-sm">
+                                                ₦{calc.yearly_savings?.toLocaleString()}
+                                            </p>
+                                        </div>
+                                        <div className="bg-slate-50 rounded-lg px-3 py-2">
+                                            <p className="text-slate-400 text-xs">Payback Period</p>
+                                            <p className="text-slate-900 font-semibold text-sm">
+                                                {calc.payback_period}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* My Saved Products */}
