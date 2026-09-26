@@ -112,3 +112,9 @@ export interface Solution {
     benefits: { icon: string; title: string; desc: string }[];
 };
 
+export interface Installers {
+    slug: string;
+    title: string;
+    subtitle: string;
+    icon: string
+}

@@ -9,6 +9,7 @@ import { createClient } from "@/lib/client"
 import { useRouter } from "next/navigation"
 import NavbarDropDown from "./NavbarDropDown"
 import NavbarSolutionsMenu from "./NavbarSolutionsMenu"
+import NavbarInstallersMenu from "./NavbarInstallersMenu"
 
 export default function Navbar() {
     const supabase = createClient()
@@ -16,6 +17,7 @@ export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false)
     const [openArrow, setOpenArrow] = useState<number | null>(null)
     const [desktopNav, setDesktopNav] = useState<string>("")
+
 
     async function signOut() {
 
@@ -26,12 +28,20 @@ export default function Navbar() {
     }
 
     function openNav(item: string) {
+        console.log(item)
+        if (item === "About") {
+            console.log(item)
+            router.push("/dashboard")
+            return
+        }
+
         if (desktopNav === item) {
             setDesktopNav("")
         }
         else {
             setDesktopNav(item)
         }
+
     }
 
     // useEffect(() => {
@@ -57,10 +67,11 @@ export default function Navbar() {
                 {/* desktop */}
                 <div className="md:flex hidden gap-6 items-center  ">
                     {allproducts.map((product, idx) => (
-                        <div key={idx} className=" cursor-pointer group border border-white " onClick={() => openNav(product.navHeading)}>
+                        <div key={idx} className=" cursor-pointer group " onClick={() => openNav(product.navHeading)}>
 
                             <div className="flex items-center gap-2 relative">
                                 <span className={`text-white z-10 text-xs lg:text-sm decoration-orange-500 group-hover:underline group-hover:underline-offset-8 `}>{product.navHeading}</span>
+
                             </div>
                             <div className={`${desktopNav === "Products" ? "block" : "hidden"} `}>
                                 <NavbarDropDown />
@@ -70,7 +81,10 @@ export default function Navbar() {
                                 <NavbarSolutionsMenu />
 
                             </div>
+                            <div className={`${desktopNav === "Installer" ? "block" : "hidden"} `}>
+                                <NavbarInstallersMenu />
 
+                            </div>
 
                             {/* onMouseEnter={() => setDesktopNav(product.navHeading)} onMouseLeave={() => setDesktopNav("")} */}
                             {/* ${desktopNav === product.navHeading && "group-hover:text-red-500"} */}
@@ -101,12 +115,18 @@ export default function Navbar() {
 
                     ))}
                 </div>
-                <div className="flex px-4  justify-center items-center bg-orange-500 py-1 hidden md:flex rounded-lg gap-2 " onClick={() => signOut()}>
-                    <span className="text-white text-xs lg:text-sm ">
-                        Get Quote
-                    </span>
-                    <Image src={assets.arrowRight} alt="arrow-right" width={20} height={20} className="w-3 h-3" />
-                </div>
+                <Link
+                    href="/dashboard"
+                    className=" "
+                >
+                    <Image
+                        src="/icons/dashboard.png"
+                        alt="Dashboard"
+                        width={10}
+                        height={10}
+                        className="w-5 h-5"
+                    />
+                </Link>
                 {/* mobile */}
                 <div id="drop-down" className={`md:hidden bg-[#0F172A] absolute py-5 text-white left-0 right-0 top-12 px-4 transition-all duration-100 -z-10 space-y-5 ${openMenu ? "translate-y-0 z-10" : "-translate-y-[100%]"} `}>
                     {allproducts.map((product, idx) => (

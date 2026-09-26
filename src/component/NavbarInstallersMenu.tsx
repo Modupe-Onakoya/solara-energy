@@ -3,12 +3,12 @@ import { installers } from "@/data/installers";
 
 export default function NavbarInstallersMenu() {
     return (
-        <div className="absolute top-full left-1/3 mt-3 w-[420px] rounded-xl bg-white p-3 shadow-lg">
+        <div className="absolute top-full left-1/3  mt-3 w-[450px] rounded-xl bg-white p-3 shadow-lg">
             <div className="space-y-2">
                 {installers.map((installer) => (
                     <Link
                         key={installer.slug}
-                        href={`/installers/${installer.slug}`}
+                        href={`/${installer.slug}`}
                         className="flex gap-3 rounded-lg p-3 hover:bg-gray-100"
                     >
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-orange-50 text-xl">

@@ -4,12 +4,12 @@ export default function NavbarDropDown() {
 
     return (
 
-        <div className="absolute top-full left-0 mt-3 w-[420px] rounded-xl bg-white p-3 shadow-lg mx-auto left-1/3">
+        <div className="absolute top-full left-0 mt-3 w-[800px] rounded-xl bg-white p-3 shadow-lg mx-auto left-1/4">
             <div className="space-y-2  grid grid-cols-2">
                 {produce.map((solution) => (
                     <Link
                         key={solution.slug}
-                        href={`/solutions/${solution.slug}`}
+                        href={`/products/${solution.slug}`}
                         className="flex gap-3 rounded-lg p-2 hover:bg-gray-100"
                     >
                         <img
