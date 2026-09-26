@@ -8,6 +8,7 @@ import Link from "next/link"
 import { createClient } from "@/lib/client"
 import { useRouter } from "next/navigation"
 import NavbarDropDown from "./NavbarDropDown"
+import NavbarSolutionsMenu from "./NavbarSolutionsMenu"
 
 export default function Navbar() {
     const supabase = createClient()
@@ -22,6 +23,15 @@ export default function Navbar() {
         router.push("/login")
         console.log("done")
         // alert("looged out")
+    }
+
+    function openNav(item: string) {
+        if (desktopNav === item) {
+            setDesktopNav("")
+        }
+        else {
+            setDesktopNav(item)
+        }
     }
 
     // useEffect(() => {
@@ -45,16 +55,22 @@ export default function Navbar() {
                     </button>
                 </div>
                 {/* desktop */}
-                <div className="md:flex hidden gap-6 items-center ">
+                <div className="md:flex hidden gap-6 items-center  ">
                     {allproducts.map((product, idx) => (
-                        <div key={idx} className=" cursor-pointer group border border-white " onClick={() => setDesktopNav(product.navHeading)} >
-                            <div className="flex items-center gap-2">
+                        <div key={idx} className=" cursor-pointer group border border-white " onClick={() => openNav(product.navHeading)}>
+
+                            <div className="flex items-center gap-2 relative">
                                 <span className={`text-white z-10 text-xs lg:text-sm decoration-orange-500 group-hover:underline group-hover:underline-offset-8 `}>{product.navHeading}</span>
                             </div>
                             <div className={`${desktopNav === "Products" ? "block" : "hidden"} `}>
                                 <NavbarDropDown />
 
                             </div>
+                            <div className={`${desktopNav === "Solutions" ? "block" : "hidden"} `}>
+                                <NavbarSolutionsMenu />
+
+                            </div>
+
 
                             {/* onMouseEnter={() => setDesktopNav(product.navHeading)} onMouseLeave={() => setDesktopNav("")} */}
                             {/* ${desktopNav === product.navHeading && "group-hover:text-red-500"} */}

@@ -111,3 +111,4 @@ export interface Solution {
     systems: SolutionSystem[];
     benefits: { icon: string; title: string; desc: string }[];
 };
+
