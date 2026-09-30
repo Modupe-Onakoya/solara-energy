@@ -3,7 +3,7 @@
 @custom-variant group-hover (.group:hover &);
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme: {
+@theme {
   --color-brand-primary: #F97316;
   --color-brand-dark: #0F172A;
   --color-brand-muted: #F8FAFC;
