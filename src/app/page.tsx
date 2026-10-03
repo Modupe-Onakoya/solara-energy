@@ -16,7 +16,7 @@ import Solutions from "@/component/Solutions";
 import SystemRecommendation from "@/component/SystemRecommendation";
 import Testimonials from "@/component/Testimonials";
 import Tools from "@/component/tools";
-import PaymentButton from "@/component/ui/PaymentButton";
+// import PaymentButton from "@/component/ui/PaymentButton";
 import WhyUs from "@/component/WhyUs";
 
 

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Product } from "@/types"
 import { createClient } from "@/lib/client"
-import PaymentButton from "./ui/PaymentButton"
+// import PaymentButton from "./ui/PaymentButton"
 
 
 function fmt(n: number) {
@@ -169,7 +169,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                                                 </li>
                                             ))}
                                         </ul>
-                                        {userEmail ? (
+                                        {/* {userEmail ? (
                                             <PaymentButton
                                                 email={userEmail}
                                                 amount={variant.price}
@@ -185,7 +185,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                                             >
                                                 Login to Order
                                             </Link>
-                                        )}
+                                        )} */}
                                     </div>
                                 ) : (
                                     <div className="space-y-4">
