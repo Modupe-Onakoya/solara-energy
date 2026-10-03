@@ -1,9 +1,10 @@
 // components/sections/ProductDetail.tsx
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Product } from "@/types"
-
+import { createClient } from "@/lib/client"
+import PaymentButton from "./ui/PaymentButton"
 
 
 function fmt(n: number) {
@@ -11,17 +12,33 @@ function fmt(n: number) {
 }
 
 export default function ProductDetail({ product }: { product: Product }) {
-    ;
+    const supabase = createClient()
+    const [userEmail, setUserEmail] = useState("")
+
     const [selectedVariant, setSelectedVariant] = useState<number | null>(null);
     const [payMode, setPayMode] = useState<"direct" | "plan">("direct");
     const [planMonths, setPlanMonths] = useState(12);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-
     const variant = selectedVariant !== null ? product.variants[selectedVariant] : null;
     const deposit = variant ? Math.round(variant.price * 0.3) : 0;
     const monthly = variant ? Math.round((variant.price - deposit) / planMonths) : 0;
 
+    useEffect(() => {
+        async function getUser() {
+            const { data: { user } } = await supabase.auth.getUser()
+            if (user?.email) setUserEmail(user.email)
+        }
+        getUser()
+
+    }, [])
+
+    function handleSuccess() {
+        alert("Payment successful! We will contact you within 24 hours.")
+    }
+
+    function handleClose() {
+        alert("Payment cancelled.")
+    }
     return (
         <div className="min-h-screen bg-white">
             {/* Page hero */}
@@ -152,9 +169,23 @@ export default function ProductDetail({ product }: { product: Product }) {
                                                 </li>
                                             ))}
                                         </ul>
-                                        <Link href="/quote" className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110" style={{ backgroundColor: "#F97316" }}>
-                                            Order Now — {fmt(variant.price)}
-                                        </Link>
+                                        {userEmail ? (
+                                            <PaymentButton
+                                                email={userEmail}
+                                                amount={variant.price}
+                                                productName={variant.name}
+                                                onSuccess={handleSuccess}
+                                                onClose={handleClose}
+                                            />
+                                        ) : (
+                                            <Link
+                                                href="/login"
+                                                className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110"
+                                                style={{ backgroundColor: "#F97316" }}
+                                            >
+                                                Login to Order
+                                            </Link>
+                                        )}
                                     </div>
                                 ) : (
                                     <div className="space-y-4">
