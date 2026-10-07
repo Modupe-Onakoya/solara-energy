@@ -119,9 +119,7 @@ export default function Navbar() {
                     href="/dashboard"
                     className=" "
                 >
-                    <p className="text-white border px-4 rounded-xl py-1">
-                        Dashboard
-                    </p>
+                    <Image src="/icon/user.png" alt="user" />
                 </Link>
                 {/* mobile */}
                 <div id="drop-down" className={`md:hidden bg-[#0F172A] absolute py-5 text-white left-0 right-0 top-12 px-4 transition-all duration-100 -z-10 space-y-5 ${openMenu ? "translate-y-0 z-10" : "-translate-y-[100%]"} `}>
