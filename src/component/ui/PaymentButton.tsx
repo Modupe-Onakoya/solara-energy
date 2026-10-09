@@ -1,40 +1,26 @@
 "use client";
-
+import dynamic from "next/dynamic"
 
 import PaystackPop from "@paystack/inline-js";
 
-export default async function PaymentButton() {
+export default function PaymentButton({ totalAmount }: { totalAmount: number }) {
 
     const handlePayment = async () => {
         const paystack = new PaystackPop();
-        // const { data: { user } } = await supabase.auth.getUser()
-        // if (!user) {
-        //     alert("kindly login")
-        //     return
-        // }
-        // const { error } = await supabase.from("payments").insert({
-        //     status: "pending",
-        //     user_id: user.id
-        // })
 
-        // if (error) {
-        //     console.log(error.message)
-        //     return
-        // }
-        const response = await fetch("/api/paystack/create")
+        const response = await fetch("/api/paystack/create", {
+            method: "POST",
+
+        })
         const data = await response.json()
         paystack.newTransaction({
             key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,
             email: "customer@example.com",
-            amount: 45000000,
+            amount: totalAmount,
             currency: "NGN",
 
             onSuccess: async (transaction: { reference: string }) => {
-                // const { data, error } = await supabase.from("payment").update({
-                //     reference: transaction.reference
-                // }).select()
-                // if (error || !data) return
-                // const pay = data[0].id
+
                 const response = await fetch("/api/paystack/verify",
                     {
                         method: "POST",
@@ -43,22 +29,15 @@ export default async function PaymentButton() {
                         },
                         body: JSON.stringify({
                             reference: transaction.reference,
-                            id: data.data
+                            id: data.data,
+                            amountTransacted: totalAmount
                         }),
                     }
 
                 )
                 const res = await response.json()
-                // if (res.message === "Payment verified successfully") {
-                //     await supabase.from("payment").update({
-                //         status: "success", amount: res.expectedAmount,
-                //         currency: res.expectedCurrency,
-                //     }).eq("id", pay)
-                // }
+                console.log(res)
 
-                // if (data.status === 200) {
-
-                // }
             },
         })
 
@@ -68,7 +47,7 @@ export default async function PaymentButton() {
 
 
     return (
-        <button>
+        <button className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110" style={{ backgroundColor: "#F97316" }} onClick={() => handlePayment()}>
             Pay Now
         </button>
     );

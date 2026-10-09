@@ -2,7 +2,7 @@ import { createClient } from "@/lib/client";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-    const { id, reference } = await request.json();
+    const { id, reference, amountTransacted } = await request.json();
     const supabase = createClient()
 
     const response = await fetch(`https://api.paystack.co/transaction/verify/${reference}`,
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
         );
     }
 
-    const expectedAmount = 45000000;
+    const expectedAmount = amountTransacted;
     const expectedCurrency = "NGN";
 
     if (

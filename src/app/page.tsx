@@ -16,6 +16,7 @@ import Solutions from "@/component/Solutions";
 import SystemRecommendation from "@/component/SystemRecommendation";
 import Testimonials from "@/component/Testimonials";
 import Tools from "@/component/tools";
+import PaymentButtonWrapper from "@/component/ui/PaymentButtonWrapper";
 // import PaymentButton from "@/component/ui/PaymentButton";
 import WhyUs from "@/component/WhyUs";
 
@@ -27,7 +28,7 @@ export default function Home() {
       <Hero />
       <HomeProducts />
       {/* <PaymentButton /> */}
-
+      <PaymentButtonWrapper />
       <Solution />
       {/* <Solutions /> */}
       <Tools />

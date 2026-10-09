@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Product } from "@/types"
 import { createClient } from "@/lib/client"
+import PaymentButtonWrapper from "./ui/PaymentButtonWrapper"
 // import PaymentButton from "./ui/PaymentButton"
 
 
@@ -169,14 +170,8 @@ export default function ProductDetail({ product }: { product: Product }) {
                                                 </li>
                                             ))}
                                         </ul>
-                                        {/* {userEmail ? (
-                                            <PaymentButton
-                                                email={userEmail}
-                                                amount={variant.price}
-                                                productName={variant.name}
-                                                onSuccess={handleSuccess}
-                                                onClose={handleClose}
-                                            />
+                                        {userEmail ? (
+                                            <PaymentButtonWrapper total={variant.price * 100} />
                                         ) : (
                                             <Link
                                                 href="/login"
@@ -185,7 +180,8 @@ export default function ProductDetail({ product }: { product: Product }) {
                                             >
                                                 Login to Order
                                             </Link>
-                                        )} */}
+                                        )}
+
                                     </div>
                                 ) : (
                                     <div className="space-y-4">
