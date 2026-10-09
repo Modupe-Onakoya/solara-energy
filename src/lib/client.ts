@@ -1,9 +1,6 @@
 import { createBrowserClient } from "@supabase/ssr";
-import PaystackPop from "@paystack/inline-js";
+
 export function createClient() {
-    const handlePayment = () => {
-        const paystack = new PaystackPop();
-    };
 
 
     return createBrowserClient(

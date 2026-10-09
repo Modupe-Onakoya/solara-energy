@@ -1,7 +1,9 @@
+import { createClient } from "@/lib/client";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-    const { reference } = await request.json();
+    const { id, reference } = await request.json();
+    const supabase = createClient()
 
     const response = await fetch(`https://api.paystack.co/transaction/verify/${reference}`,
         {
@@ -32,4 +34,20 @@ export async function POST(request: Request) {
             { status: 400 }
         );
     }
+
+    const { error } = await supabase.from("payment").update({
+        reference: reference,
+        status: "success",
+        currency: data.data.currency,
+        amount: data.data.amount
+    }).eq("id", id)
+
+    if (error) {
+        return Response.json(error.message)
+    }
+
+    return NextResponse.json({
+        message: "Payment verified successfully",
+        transaction: data.data,
+    });
 }
