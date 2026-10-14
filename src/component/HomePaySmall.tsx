@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function HomePaySmall() {
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white " id="pay-small">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="rounded-3xl overflow-hidden grid lg:grid-cols-2" style={{ backgroundColor: "#0F172A" }}>
                     {/* Image side */}

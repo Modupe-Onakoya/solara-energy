@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Company_logo from "./Company_logo"
 import Image from "next/image"
 import { assets } from "@/assets/asset"
@@ -17,8 +17,23 @@ export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false)
     const [openArrow, setOpenArrow] = useState<number | null>(null)
     const [desktopNav, setDesktopNav] = useState<string>("")
+    const [userMenu, setUserMenu] = useState<boolean>(false)
+    const navRef = useRef<HTMLDivElement | null>(null);
 
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (navRef.current && !navRef.current.contains(event.target as Node)) {
+                setDesktopNav("");
+                setUserMenu(false);
+            }
+        }
 
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
     async function signOut() {
 
         await supabase.auth.signOut()
@@ -41,9 +56,11 @@ export default function Navbar() {
         else {
             setDesktopNav(item)
         }
-
     }
 
+    function log() {
+        signOut()
+    }
     // useEffect(() => {
     //     const handleClickOutside = () => setOpenArrow(null)
     //     document.addEventListener("click", handleClickOutside)
@@ -51,7 +68,7 @@ export default function Navbar() {
     // }, [])
 
     return (
-        <div className="bg-[#0F172A] px-4 py-3 md:px-16 fixed left-0 right-0 z-100 w-full">
+        <div className="bg-[#0F172A] px-4 py-3 md:px-16 fixed left-0 right-0 z-200 w-full ">
             <div className="md:flex  justify-between items-center ">
                 <div id="logo-bugger" className="flex  justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -65,12 +82,12 @@ export default function Navbar() {
                     </button>
                 </div>
                 {/* desktop */}
-                <div className="md:flex hidden gap-6 items-center  ">
+                <div className="md:flex hidden gap-6 items-center " ref={navRef}>
                     {allproducts.map((product, idx) => (
                         <div key={idx} className=" cursor-pointer group " onClick={() => openNav(product.navHeading)}>
 
                             <div className="flex items-center gap-2 relative">
-                                <span className={`text-white z-10 text-xs lg:text-sm decoration-orange-500 group-hover:underline group-hover:underline-offset-8 `}>{product.navHeading}</span>
+                                <span className={`text-white z-10 text-xs lg:text-sm decoration-orange-500 group-hover:underline group-hover:underline-offset-8 ${desktopNav === product.navHeading ? "underline underline-offset-8  " : ""} `}>{product.navHeading}</span>
 
                             </div>
                             <div className={`${desktopNav === "Products" ? "block" : "hidden"} `}>
@@ -114,52 +131,72 @@ export default function Navbar() {
                         </div>
 
                     ))}
+
                 </div>
-                <Link
-                    href="/dashboard"
-                    className=" "
-                >
-                    <Image src="/icons/user.png" alt="user" width={10} height={10} />
-                </Link>
-                {/* mobile */}
-                <div id="drop-down" className={`md:hidden bg-[#0F172A] absolute py-5 text-white left-0 right-0 top-12 px-4 transition-all duration-100 -z-10 space-y-5 ${openMenu ? "translate-y-0 z-10" : "-translate-y-[100%]"} `}>
-                    {allproducts.map((product, idx) => (
-                        <div className="relative w-full z-100" key={idx} onClick={(e) => {
-                            e.stopPropagation()
-                            setOpenArrow(prev => prev === idx ? null : idx)
-                        }}
-                        >
-                            <div className="flex items-center justify-between">
-                                <span className="text-sm">{product.navHeading}</span>
-                                <div>
-                                    {product.navHeading !== "Contact" && <Image src={assets.arrowDown} alt="Arrow down" width={20} height={20} className={`${idx === openArrow ? "rotate-180" : ""} w-3 h-3`} />}
-                                </div>
-                            </div>
-                            {idx === openArrow &&
-                                <div className="px-5  space-y-4 py-2">
+                <div className="relative max-md:hidden">
 
-                                    {product.navHeading !== "Contact" && product.products.map((pro, id) => (
+                    <div
 
-                                        <div className="flex gap-2 items-center" key={id}>
-                                            <div className="w-1 h-1 bg-orange-500 rounded-full"></div>
-                                            <span className="text-xs">{pro.item}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                            }
-                        </div>
-
-                    ))}
-                    <div className="flex w-full justify-center gap-2 items-center bg-orange-500 py-2 rounded-lg z-100"  >
-                        <span >
-                            Get Quote
-                        </span>
-                        <Image src={assets.arrowRight} alt="arrow-right" width={20} height={20} className="w-3 h-3" />
+                        onClick={() => setUserMenu(!userMenu)}
+                    >
+                        <Image src="/icons/user.png" alt="user" className="size-7 cursor-pointer" width={10} height={10} />
                     </div>
+                    {/* <p className="text-white" onClick={() => signOut()}>
+                    logout
+                </p> */}
+                    {
+                        userMenu && <div className="absolute z-100 -right-8 bg-white mt-5  rounded-lg  text-sm px-2 py-2 space-y-5">
+                            <Link href={"/dashboard"} className="hover:bg-orange-400 px-2 py-1 rounded-lg transition duration-500 cursor-pointer">
+                                Dashboard
+                            </Link>
+                            <p onClick={() => signOut()} className="hover:bg-orange-400 px-2 rounded-lg transition duration-500 py-1 cursor-pointer">
+                                Log out
+                            </p>
+                        </div>
+                    }
                 </div>
 
             </div>
+
+            {/* mobile */}
+            <div id="drop-down" className={`md:hidden bg-[#0F172A] absolute py-5 text-white left-0 right-0  px-4 transition-all duration-100 -z-10 space-y-5 ${openMenu ? "-translate-y-0 z-10" : "-translate-y-[150%]"} `}>
+                {allproducts.map((product, idx) => (
+                    <div className="relative w-full z-100" key={idx} onClick={(e) => {
+                        e.stopPropagation()
+                        setOpenArrow(prev => prev === idx ? null : idx)
+                    }}
+                    >
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm">{product.navHeading}</span>
+                            <div>
+                                {product.navHeading !== "Contact" && <Image src={assets.arrowDown} alt="Arrow down" width={20} height={20} className={`${idx === openArrow ? "rotate-180" : ""} w-3 h-3`} />}
+                            </div>
+                        </div>
+                        {idx === openArrow &&
+                            <div className="px-5  space-y-4 py-2">
+
+                                {product.navHeading !== "Contact" && product.products.map((pro, id) => (
+
+                                    <div className="flex gap-2 items-center" key={id}>
+                                        <div className="w-1 h-1 bg-orange-500 rounded-full"></div>
+                                        <span className="text-xs">{pro.item}</span>
+                                    </div>
+                                ))}
+                            </div>
+
+                        }
+                    </div>
+
+                ))}
+
+                <div className="flex w-full justify-center gap-2 items-center bg-orange-500 py-2 rounded-lg z-100"  >
+                    <span >
+                        Get Quote
+                    </span>
+                    <Image src={assets.arrowRight} alt="arrow-right" width={20} height={20} className="w-3 h-3" />
+                </div>
+            </div>
+
         </div >
     )
 }

@@ -1,9 +1,12 @@
-import { createClient } from "@/lib/client"
+import { createClient } from "@/lib/server"
 
 export async function POST() {
 
-    const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const supabase = await createClient()
+    const { data: { user }, error: getUserError } = await supabase.auth.getUser()
+    console.log("User:", user);
+    console.log("Auth error:", getUserError);
+    console.log("User ID:", user?.id);
     if (!user) {
         return Response.json(
             { message: "Kindly login" },
@@ -14,14 +17,17 @@ export async function POST() {
         status: "pending",
         user_id: user.id
     }).select("id").single()
+    console.log("Inserted payment:", data);
 
     if (error) {
         return Response.json(
-            { message: "Could not create payment" },
-            { status: 500 }
+            { message: error.message },
+            { status: 500, }
+
+
         );
     }
 
-    return Response.json({ message: "success", data: data });
+    return Response.json({ message: "success", iden: data });
 
 }

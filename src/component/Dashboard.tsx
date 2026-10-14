@@ -23,7 +23,7 @@ export default async function Dashboard() {
         .from("calculations")
         .select("*")
         .order("created_at", { ascending: false })  // newest first
-    console.log(calculations)
+
 
     return (
         <div className="min-h-screen bg-slate-50">

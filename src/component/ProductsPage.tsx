@@ -10,7 +10,7 @@ export default function ProductsPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero */}
-            <div className="py-20 text-center" style={{ backgroundColor: "#0F172A" }}>
+            <div className="py-20 text-center" style={{ backgroundColor: "#1b419b" }}>
                 <p className="text-orange-400 font-semibold text-sm uppercase tracking-widest mb-3">Our Products</p>
                 <h1 className="text-white font-bold text-5xl mb-4">Built for the Sun</h1>
                 <p className="text-slate-400 text-lg max-w-lg mx-auto">Everything you need for a complete, reliable solar power system — sourced, installed, and warranted by SolarFlow.</p>

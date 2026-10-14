@@ -27,15 +27,9 @@ export default function Home() {
       <Navbar />
       <Hero />
       <HomeProducts />
-      {/* <PaymentButton /> */}
-      <PaymentButtonWrapper />
       <Solution />
-      {/* <Solutions /> */}
       <Tools />
-      {/* <Pay /> */}
       <HomePaySmall />
-      {/* <HomePaySmallSmall /> */}
-      {/* <PaySmallSmall /> */}
       <WhyUs />
       <Testimonials />
       <Installers />

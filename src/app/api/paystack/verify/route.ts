@@ -14,6 +14,8 @@ export async function POST(request: Request) {
     )
 
     const data = await response.json();
+
+
     if (data.data.status !== "success") {
         return NextResponse.json(
             { message: "Payment was not successful" },
@@ -39,7 +41,7 @@ export async function POST(request: Request) {
         reference: reference,
         status: "success",
         currency: data.data.currency,
-        amount: data.data.amount
+        amount: data.data.amount / 100
     }).eq("id", id)
 
     if (error) {
@@ -47,7 +49,6 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-        message: "Payment verified successfully",
-        transaction: data.data,
+        data, error
     });
 }
