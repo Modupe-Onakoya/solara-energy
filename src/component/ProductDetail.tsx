@@ -43,7 +43,8 @@ export default function ProductDetail({ product }: { product: Product }) {
     return (
         <div className="min-h-screen bg-white">
             {/* Page hero */}
-            <div className="relative pt-16" style={{ backgroundColor: "#0F172A" }}>
+            <div className="relative pt-16 opacity-90" style={{ backgroundColor: "#0F172A" }}>
+
                 <div className="max-w-7xl mx-auto px-6 py-14">
                     <Link href="/products" className="inline-flex items-center gap-2 text-slate-400 text-sm mb-6 hover:text-white transition-colors">
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10 7H4M6 4L3 7l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>

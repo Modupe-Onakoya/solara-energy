@@ -61,11 +61,7 @@ export default function Navbar() {
     function log() {
         signOut()
     }
-    // useEffect(() => {
-    //     const handleClickOutside = () => setOpenArrow(null)
-    //     document.addEventListener("click", handleClickOutside)
-    //     return () => document.removeEventListener("click", handleClickOutside)
-    // }, [])
+
 
     return (
         <div className="bg-[#0F172A] px-4 py-3 md:px-16 fixed left-0 right-0 z-200 w-full ">
@@ -103,31 +99,7 @@ export default function Navbar() {
 
                             </div>
 
-                            {/* onMouseEnter={() => setDesktopNav(product.navHeading)} onMouseLeave={() => setDesktopNav("")} */}
-                            {/* ${desktopNav === product.navHeading && "group-hover:text-red-500"} */}
-                            {/* {
-                                desktopNav === product.navHeading &&
-                                (
-                                    <div onMouseEnter={() => setDesktopNav(product.navHeading)} className={` absolute top-full text-xs z-100 bg-white w-[100px] pl-1 pr-1 py-2 space-y-4 rounded-lg ${desktopNav === product.navHeading && "group-hover:blcok"}`} >
-                                        {product.products.map((pro, idx) => (
-                                            <div key={idx} className="hover:bg-gray-300 py-1">
-                                                <Link href={pro.href}>{pro.item}</Link>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )
-                            } */}
-                            {/* {
-                                desktopNav === product.navHeading && product.navHeading !== "Contact" ?
-                                    <div className="absolute top-full text-xs z-100 bg-white w-[100px] pl-1 pr-1 py-2 space-y-4 rounded-lg" >
-                                        {product.products.map((pro, idx) => (
-                                            <div key={idx} className="hover:bg-gray-300 py-1">
-                                                <Link href={pro.href}>{pro.item}</Link>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    : null
-                            } */}
+
                         </div>
 
                     ))}
@@ -141,9 +113,7 @@ export default function Navbar() {
                     >
                         <Image src="/icons/user.png" alt="user" className="size-7 cursor-pointer" width={10} height={10} />
                     </div>
-                    {/* <p className="text-white" onClick={() => signOut()}>
-                    logout
-                </p> */}
+
                     {
                         userMenu && <div className="absolute z-100 -right-8 bg-white mt-5  rounded-lg  text-sm px-2 py-2 space-y-5">
                             <Link href={"/dashboard"} className="hover:bg-orange-400 px-2 py-1 rounded-lg transition duration-500 cursor-pointer">
