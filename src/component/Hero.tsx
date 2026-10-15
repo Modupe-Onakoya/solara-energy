@@ -12,9 +12,11 @@ export default function Hero() {
                 alt=""
                 aria-hidden="true"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.98)_0%,rgba(15,23,42,0.9)_42%,rgba(15,23,42,0.34)_76%,rgba(15,23,42,0.18)_100%)] max-sm:bg-[linear-gradient(90deg,rgba(15,23,42,0.96)_0%,rgba(15,23,42,0.82)_100%)]" />
-            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(15,23,42,0.72)_0%,transparent_38%,rgba(15,23,42,0.16)_100%)]" />
+
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(30,41,59,0.94)_0%,rgba(30,41,59,0.82)_42%,rgba(30,41,59,0.28)_76%,rgba(30,41,59,0.12)_100%)] max-sm:bg-[linear-gradient(90deg,rgba(30,41,59,0.92)_0%,rgba(30,41,59,0.72)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(30,41,59,0.55)_0%,transparent_38%,rgba(30,41,59,0.12)_100%)]" />
             <div className="absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-orange-500/15 blur-3xl" />
+
 
             <div className="relative max-w-7xl mx-auto px-2 w-full">
                 <div className="md:px-16 px-4 z">

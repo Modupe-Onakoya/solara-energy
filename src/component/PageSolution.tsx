@@ -19,10 +19,10 @@ export default function PageSolution({ solution }: { solution: Solution }) {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero */}
-            <div className="relative pt-16" style={{ backgroundColor: "#0F172A" }}>
+            <div className="relative pt-16 bg-[linear-gradient(135deg,#1E293B_0%,#0F172A_100%)]" >
                 <div className="absolute inset-0">
                     <img src={solution.heroImage} alt={solution.title} className="w-full h-full object-cover opacity-20" />
-                    <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0F172A 55%, rgba(15,23,42,0.5) 100%)" }} />
+                    <div className="absolute inset-0 bg-[linear-gradient(135deg,#1E293B_0%,#0F172A_100%)]" />
                 </div>
                 <div className="relative max-w-7xl mx-auto px-6 py-16">
                     <Link href="/solutions" className="inline-flex items-center gap-2 text-slate-400 text-sm mb-6 hover:text-white transition-colors">

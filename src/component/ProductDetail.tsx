@@ -43,7 +43,7 @@ export default function ProductDetail({ product }: { product: Product }) {
     return (
         <div className="min-h-screen bg-white">
             {/* Page hero */}
-            <div className="relative pt-16 opacity-90" style={{ backgroundColor: "#0F172A" }}>
+            <div className="relative pt-16 opacity-90 bg-[linear-gradient(135deg,#1E293B_0%,#0F172A_100%)]">
 
                 <div className="max-w-7xl mx-auto px-6 py-14">
                     <Link href="/products" className="inline-flex items-center gap-2 text-slate-400 text-sm mb-6 hover:text-white transition-colors">
@@ -243,6 +243,6 @@ export default function ProductDetail({ product }: { product: Product }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

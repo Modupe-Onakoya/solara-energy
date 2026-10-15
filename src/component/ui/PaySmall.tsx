@@ -28,9 +28,9 @@ export default async function PaySmall() {
     const result = payment(amount, duration)
 
     const response = await fetch("api/paystack/create", {
-        method: POST,
-        body: {
-
+        method: "POST",
+        headers: {
+            "Content-type": "application/json"
         }
     })
 
