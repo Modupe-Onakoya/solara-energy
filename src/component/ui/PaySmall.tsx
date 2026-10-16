@@ -1,4 +1,8 @@
-import { POST } from "@/app/api/paystack/create/route"
+
+import { createClient } from "@/lib/client"
+import PaystackPop from '@paystack/inline-js'
+import { Console } from "console"
+import { useEffect, useState } from "react"
 
 interface PaymentPlan {
     thirtyPercent: number
@@ -8,7 +12,8 @@ interface PaymentPlan {
 
 }
 
-export default async function PaySmall() {
+export default function PaySmall() {
+    const popup = new PaystackPop()
 
     const amount = 350000
     const duration = 6
@@ -26,18 +31,35 @@ export default async function PaySmall() {
         }
     }
     const result = payment(amount, duration)
+    const handlePayment = async () => {
+        const response = await fetch("/api/paystack/create", {
+            method: "POST",
+        })
 
-    const response = await fetch("api/paystack/create", {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json"
-        }
-    })
+        const data = await response.json()
 
+        const res = await fetch("/api/paystack/initialize", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: data.user,
+                amount
+            })
+
+        })
+
+        const dataInit = await res.json()
+
+
+        popup.resumeTransaction(dataInit.access)
+
+    }
 
     return (
-        <div>
-            {result.monthlyPayment}
+        <div className="" onClick={() => handlePayment()}>
+            pay
         </div>
     )
 }

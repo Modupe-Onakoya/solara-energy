@@ -4,9 +4,6 @@ export async function POST() {
 
     const supabase = await createClient()
     const { data: { user }, error: getUserError } = await supabase.auth.getUser()
-    console.log("User:", user);
-    console.log("Auth error:", getUserError);
-    console.log("User ID:", user?.id);
     if (!user) {
         return Response.json(
             { message: "Kindly login" },
@@ -28,6 +25,6 @@ export async function POST() {
         );
     }
 
-    return Response.json({ message: "success", iden: data });
+    return Response.json({ message: "success", iden: data, user: user.email });
 
 }

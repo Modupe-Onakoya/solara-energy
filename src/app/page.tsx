@@ -17,6 +17,8 @@ import SystemRecommendation from "@/component/SystemRecommendation";
 import Testimonials from "@/component/Testimonials";
 import Tools from "@/component/tools";
 import PaymentButtonWrapper from "@/component/ui/PaymentButtonWrapper";
+import PaySmall from "@/component/ui/PaySmall";
+import PaySmallWrapper from "@/component/ui/PaySmallWrapper";
 // import PaymentButton from "@/component/ui/PaymentButton";
 import WhyUs from "@/component/WhyUs";
 
@@ -27,6 +29,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <HomeProducts />
+      <PaySmallWrapper />
       <Solution />
       <Tools />
       <HomePaySmall />
