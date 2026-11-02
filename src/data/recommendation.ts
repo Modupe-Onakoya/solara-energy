@@ -11,6 +11,8 @@ export const recommmendation: Recommendation[] = [
         inverter: "1.5kVA Hybrid Inverter",
         color: "#10B981",
         emoji: "🏠",
+        value: 8000
+
     },
     {
         maxWatts: 1000,
@@ -21,6 +23,8 @@ export const recommmendation: Recommendation[] = [
         inverter: "3.5kVA Hybrid Inverter",
         color: "#F97316",
         emoji: "🏡",
+        value: 25000
+
     },
     {
         maxWatts: 2500,
@@ -31,6 +35,8 @@ export const recommmendation: Recommendation[] = [
         inverter: "5kVA Hybrid Inverter",
         color: "#0EA5E9",
         emoji: "🏘️",
+        value: 60000
+
     },
     {
         maxWatts: 3000,
@@ -41,6 +47,8 @@ export const recommmendation: Recommendation[] = [
         inverter: "10kVA Hybrid Inverter",
         color: "#8B5CF6",
         emoji: "🏢",
+        value: 100000
+
     }
 
 ]

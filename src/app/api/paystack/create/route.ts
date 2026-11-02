@@ -3,7 +3,7 @@ import { createClient } from "@/lib/server"
 export async function POST() {
 
     const supabase = await createClient()
-    const { data: { user }, error: getUserError } = await supabase.auth.getUser()
+    const { data: { user }, } = await supabase.auth.getUser()
     if (!user) {
         return Response.json(
             { message: "Kindly login" },

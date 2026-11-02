@@ -47,6 +47,7 @@ export interface Recommendation {
     inverter: string
     color: string
     emoji: string
+    value: number
 }
 export interface Brackets {
     label: string

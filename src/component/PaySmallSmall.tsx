@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react";
+import PaySmallWrapper from "./ui/PaySmallWrapper";
 
 const plans = [
     { months: 6, label: "6 Months", tag: "Quick Clear", tagColor: "#10B981" },
@@ -146,15 +147,8 @@ export default function PaySmallSmall() {
                                         <span key={b} className="flex-1 text-center text-xs font-medium text-slate-500 bg-slate-50 rounded-lg px-2 py-2">{b}</span>
                                     ))}
                                 </div>
+                                <PaySmallWrapper />
 
-                                <a
-                                    href="#"
-                                    className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110 mt-2"
-                                    style={{ backgroundColor: "#F97316" }}
-                                >
-                                    Apply for This Plan
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </a>
                                 <p className="text-center text-xs text-slate-400">Approval in 24hrs · No credit card needed</p>
                             </div>
                         </div>

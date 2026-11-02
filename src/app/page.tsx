@@ -1,4 +1,4 @@
-import BillCalculator from "@/component/BillCalculator";
+import BillCalculator from "@/app/(main)/electricity-cost/_components/BillCalculator";
 import Consultation from "@/component/Consultation";
 import Footer from "@/component/Footer";
 import Hero from "@/component/Hero";

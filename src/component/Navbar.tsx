@@ -19,11 +19,15 @@ export default function Navbar() {
     const [desktopNav, setDesktopNav] = useState<string>("")
     const [userMenu, setUserMenu] = useState<boolean>(false)
     const navRef = useRef<HTMLDivElement | null>(null);
+    const navRef1 = useRef<HTMLDivElement | null>(null);
+
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (navRef.current && !navRef.current.contains(event.target as Node)) {
                 setDesktopNav("");
+            }
+            if (navRef1.current && !navRef1.current.contains(event.target as Node)) {
                 setUserMenu(false);
             }
         }
@@ -115,8 +119,8 @@ export default function Navbar() {
                     </div>
 
                     {
-                        userMenu && <div className="absolute z-100 -right-8 bg-white mt-5  rounded-lg  text-sm px-2 py-2 space-y-5">
-                            <Link href={"/dashboard"} className="hover:bg-orange-400 px-2 py-1 rounded-lg transition duration-500 cursor-pointer">
+                        userMenu && <div ref={navRef1} className="absolute z-100 -right-8 bg-white mt-5  rounded-lg  text-sm px-2 py-2 space-y-5">
+                            <Link href={"/dashboard"} className="hover:bg-orange-400 px-2 py-1 z-100 rounded-lg transition duration-500 cursor-pointer">
                                 Dashboard
                             </Link>
                             <p onClick={() => signOut()} className="hover:bg-orange-400 px-2 rounded-lg transition duration-500 py-1 cursor-pointer">

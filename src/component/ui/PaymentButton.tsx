@@ -20,7 +20,7 @@ export default function PaymentButton({ totalAmount }: { totalAmount: number }) 
             // console.log(data.message)
             paystack.newTransaction({
                 key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,
-                email: "customer@example.com",
+                email: "onakoyamodupe0@gmail.com",
                 amount: totalAmount,
                 currency: "NGN",
 
@@ -67,7 +67,8 @@ export default function PaymentButton({ totalAmount }: { totalAmount: number }) 
 
 
     return (
-        <button className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110" style={{ backgroundColor: "#F97316" }} onClick={() => handlePayment()}>
+        <button className="flex items-center justify-center gap-2 cursor-pointer w-full py-3.5 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110 mt-2"
+            style={{ backgroundColor: "#F97316" }} onClick={() => handlePayment()}>
             Pay Now
         </button>
     );
