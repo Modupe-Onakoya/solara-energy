@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/server"
 import LogoutButton from "./ui/LogoutButton"
+import ChangePassword from "./ui/ChnagePassword"
 
 
 export default async function Settings() {
@@ -59,9 +60,7 @@ export default async function Settings() {
                         </p>
                     </div>
 
-                    <button className="border border-slate-300 rounded-lg px-4 py-2 text-sm hover:bg-slate-50">
-                        Change Password
-                    </button>
+                    <ChangePassword />
                 </div>
             </div>
 
