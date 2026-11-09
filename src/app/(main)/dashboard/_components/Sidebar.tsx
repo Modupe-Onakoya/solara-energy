@@ -9,35 +9,48 @@ export default function Sidebar() {
     return (
 
 
-        <aside className="w-64 min-h-screen bg-[#0F172A] px-5 py-8 mt-15">
+
+        <aside className="w-full md:w-64 min-h-0 md:min-h-screen bg-white md:bg-[#0F172A] px-4 md:px-5 py-4 md:py-8 mt-0 md:mt-15">
+
             {/* Logo / Brand */}
-            <div className="mb-12 px-3">
-                <h2 className="text-xl font-bold text-white">
+            <div className="mb-4 md:mb-12 px-3">
+                <h2 className="text-xl font-bold text-slate-900 md:text-white">
                     Dashboard<span className="text-orange-500">.</span>
                 </h2>
-                <p className="text-xs text-slate-400 mt-1">Manage your account</p>
+
+                <p className="text-xs text-slate-400 mt-1">
+                    Manage your account
+                </p>
             </div>
 
             {/* Navigation */}
-            <div className="flex flex-col gap-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 px-3 mb-3">
+            <div className="flex flex-col md:flex-col gap-2">
+
+                <p className="hidden md:block text-xs font-semibold uppercase tracking-wider text-slate-500 px-3 mb-3">
                     Menu
                 </p>
 
-                {links.map((item) => (
-                    <Link
-                        key={item.href}
-                        href={item.href}
-                        className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${pathname === item.href
-                            ? "bg-orange-500/10 text-orange-400 border-l-4 border-orange-500"
-                            : "text-slate-300 hover:bg-slate-800 hover:text-white"
-                            }`}
-                    >
-                        {item.name}
-                    </Link>
-                ))}
+                <div className="flex flex-row md:flex-col gap-2 overflow-x-auto">
+
+                    {links.map((item) => (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            className={`flex shrink-0 items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${pathname === item.href
+                                ? "bg-orange-500/10 text-orange-500 md:text-orange-400 md:border-l-4 md:border-orange-500"
+                                : "text-slate-600 hover:bg-slate-100 md:text-slate-300 md:hover:bg-slate-800 md:hover:text-white"
+                                }`}
+                        >
+                            {item.name}
+                        </Link>
+                    ))}
+
+                </div>
             </div>
+
+
         </aside>
+
 
 
     )

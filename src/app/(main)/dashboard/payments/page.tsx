@@ -1,3 +1,9 @@
+import Payments from "../_components/Payments";
+
 export default function PaymentsPage() {
-    return <h1 className="pt-50 py-50">Payments</h1>
+    return (
+        <div className="py-20">
+            <Payments />
+        </div>
+    )
 }
