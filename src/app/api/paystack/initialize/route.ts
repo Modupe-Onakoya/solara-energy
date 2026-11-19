@@ -7,16 +7,17 @@ export async function POST(request: NextRequest) {
         const { recommend } = await request.json()
         const supabase = await createClient()
         const { data: { user } } = await supabase.auth.getUser()
+
         if (!user) {
             return NextResponse.json({ message: "invalid user" }, { status: 401 })
         }
 
-        const plan = recommmendation.find((item) => item.system === recommend)
-        if (!plan) {
-            return NextResponse.json({ message: "Invalid system" }, { status: 400 })
-        }
-        const number = Number(plan.price.replace(/[^0-9]/g, ""))
+        // const plan = recommmendation.find((item) => item.system === recommend)
+        // if (!plan) {
+        //     return NextResponse.json({ message: "Invalid system" }, { status: 400 })
+        // }
 
+        // const nairaAmount = Number(plan.price.replace(/[^0-9]/g, ""))
 
         const response = await fetch("https://api.paystack.co/transaction/initialize", {
             method: "POST",
@@ -25,24 +26,25 @@ export async function POST(request: NextRequest) {
                 Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
             },
             body: JSON.stringify({
-                email: user.email, amount: number
-            })
-
+                email: user.email,
+                amount: 100000, // Paystack expects kobo
+            }),
         })
+
+        const result = await response.json()
+
         if (!response.ok) {
-            const errorData = await response.json();
-            console.log(errorData);
-            throw new Error(errorData.message);
+            console.log(result)
+            return NextResponse.json(
+                { message: result.message ?? "Paystack error" },
+                { status: 400 }
+            )
         }
 
-        const { data } = await response.json()
-
-        return NextResponse.json({ message: data }, { status: 200 })
+        return NextResponse.json({ message: result.data }, { status: 200 })
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Something went wrong"
+        console.log(error)
+        return NextResponse.json({ message }, { status: 500 })
     }
-    catch (error) {
-        return NextResponse.json({ messge: error }, { status: 400 })
-    }
-
-
-
 }

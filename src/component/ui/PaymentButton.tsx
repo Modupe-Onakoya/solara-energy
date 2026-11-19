@@ -3,12 +3,18 @@ import dynamic from "next/dynamic"
 
 import PaystackPop from "@paystack/inline-js";
 import { error } from "console";
+import { createClient } from "@/lib/client";
 
 export default function PaymentButton({ totalAmount }: { totalAmount: number }) {
 
     const handlePayment = async () => {
+        const supabase = await createClient()
         const paystack = new PaystackPop();
-
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) {
+            alert("login to access payment option")
+            return
+        }
         try {
             const response = await fetch("/api/paystack/create", {
                 method: "POST",
@@ -20,7 +26,7 @@ export default function PaymentButton({ totalAmount }: { totalAmount: number }) 
             // console.log(data.message)
             paystack.newTransaction({
                 key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,
-                email: "onakoyamodupe0@gmail.com",
+                email: user.email,
                 amount: totalAmount,
                 currency: "NGN",
 

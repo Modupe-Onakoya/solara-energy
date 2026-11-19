@@ -29,7 +29,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <HomeProducts />
-      <PaySmallWrapper />
+      {/* <PaySmallWrapper /> */}
       <Solution />
       <Tools />
       <HomePaySmall />

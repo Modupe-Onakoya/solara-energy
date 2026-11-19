@@ -147,8 +147,7 @@ export default function PaySmallSmall() {
                                         <span key={b} className="flex-1 text-center text-xs font-medium text-slate-500 bg-slate-50 rounded-lg px-2 py-2">{b}</span>
                                     ))}
                                 </div>
-                                <PaySmallWrapper />
-
+                                <PaySmallWrapper month={months} amount={system.price} />
                                 <p className="text-center text-xs text-slate-400">Approval in 24hrs · No credit card needed</p>
                             </div>
                         </div>

@@ -9,12 +9,17 @@ interface PaymentPlan {
 
 }
 
-export default function PaySmall() {
+type Props = {
+    month: number
+    amount: number
+}
+
+export default function PaySmall({ month, amount }: Props) {
+    const duration = month
+    const price = amount
     console.log("PaySmall rendered")
     const popup = new PaystackPop()
 
-    const amount = 350000
-    const duration = 6
     function payment(num: number, duration: number): PaymentPlan {
 
         const thirtyPercent = (num * 30) / 100
@@ -44,13 +49,14 @@ export default function PaySmall() {
             },
             body: JSON.stringify({
 
-                amount
+                price
             })
 
         })
 
         const dataInit = await res.json()
-        console.log(dataInit)
+        console.log(dataInit.message.access_code)
+
         const transact = popup.resumeTransaction(
             dataInit.message.access_code,
             {
