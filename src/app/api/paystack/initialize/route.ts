@@ -4,7 +4,7 @@ import { recommmendation } from "@/data/recommendation";
 
 export async function POST(request: NextRequest) {
     try {
-        const { recommend } = await request.json()
+        const { amount, month } = await request.json()
         const supabase = await createClient()
         const { data: { user } } = await supabase.auth.getUser()
 
@@ -18,6 +18,8 @@ export async function POST(request: NextRequest) {
         // }
 
         // const nairaAmount = Number(plan.price.replace(/[^0-9]/g, ""))
+        const price = amount * 100
+
 
         const response = await fetch("https://api.paystack.co/transaction/initialize", {
             method: "POST",
@@ -27,7 +29,7 @@ export async function POST(request: NextRequest) {
             },
             body: JSON.stringify({
                 email: user.email,
-                amount: 100000, // Paystack expects kobo
+                amount: price  // Paystack expects kobo
             }),
         })
 

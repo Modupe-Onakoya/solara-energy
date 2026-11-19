@@ -9,8 +9,9 @@ const PaySmall = dynamic(
 type Props = {
     month: number
     amount: number
+    systemPrice: number
 }
 
-export default function PaySmallWrapper({ month, amount }: Props) {
-    return <PaySmall month={month} amount={amount} />
+export default function PaySmallWrapper({ month, amount, systemPrice }: Props) {
+    return <PaySmall month={month} amount={amount} systemPrice={systemPrice} />
 }

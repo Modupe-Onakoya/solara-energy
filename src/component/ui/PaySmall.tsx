@@ -12,11 +12,12 @@ interface PaymentPlan {
 type Props = {
     month: number
     amount: number
+    systemPrice: number
+
 }
 
-export default function PaySmall({ month, amount }: Props) {
-    const duration = month
-    const price = amount
+export default function PaySmall({ month, amount, systemPrice }: Props) {
+
     console.log("PaySmall rendered")
     const popup = new PaystackPop()
 
@@ -33,7 +34,7 @@ export default function PaySmall({ month, amount }: Props) {
 
         }
     }
-    const result = payment(amount, duration)
+    // const result = payment(amount, duration)
     const handlePayment = async () => {
         const response = await fetch("/api/paystack/create_plan", {
             method: "POST",
@@ -49,7 +50,7 @@ export default function PaySmall({ month, amount }: Props) {
             },
             body: JSON.stringify({
 
-                price
+                amount, month
             })
 
         })
@@ -73,7 +74,9 @@ export default function PaySmall({ month, amount }: Props) {
                         body: JSON.stringify({
                             reference: dataInit.message.reference,
                             amount,
-                            id: data.message.id
+                            systemPrice,
+                            id: data.message.id,
+                            month
                         })
                     })
 

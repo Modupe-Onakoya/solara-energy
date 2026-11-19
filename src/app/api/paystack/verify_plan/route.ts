@@ -3,15 +3,17 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
     try {
+
         const supabase = await createClient()
         const { data: { user } } = await supabase.auth.getUser()
         if (!user) {
             return NextResponse.json({ message: "Kindly login" }, { status: 401 })
         }
 
-        const { reference, amount, id } = await request.json() // amount is in NAIRA
+        const { reference, amount, id, systemPrice, month } = await request.json() // amount is in NAIRA
         const expectedKobo = Math.round(Number(amount) * 100)
-
+        const remaining_bal = systemPrice - amount
+        const month_remaining = month - 1
         const response = await fetch(
             `https://api.paystack.co/transaction/verify/${reference}`,
             { headers: { Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}` } }
@@ -33,13 +35,23 @@ export async function POST(request: NextRequest) {
         const supabaseAdmin = await createClientAdmin()
         const { data: updated, error } = await supabaseAdmin
             .from("payment_plans")
-            .update({ status: "active", total_amount: amount }) // saved in Naira
+            .update(
+                {
+                    status: "active",
+                    total_amount: systemPrice,
+                    deposit_amount: amount,
+                    monthly_payments: amount,
+                    remaining_balance: remaining_bal,
+                    monthly_duration: month,
+                    month_remaining
+                }
+            ) // saved in Naira
             .eq("id", id)
             .eq("user_id", user.id) // only the owner's plan
             .select()
 
         if (error || !updated || updated.length === 0) {
-            return NextResponse.json({ message: "Update failed" }, { status: 500 })
+            return NextResponse.json({ message: "Update failed", error }, { status: 500 })
         }
 
         return NextResponse.json({ message: "success" }, { status: 200 })
