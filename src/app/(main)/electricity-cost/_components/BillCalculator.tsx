@@ -31,6 +31,7 @@ export default function BillCalculator() {
     const rec = bill > 0 ? getSystemRec(bill) : null;
     const paybackYears = rec ? rec.payback : 0;
     const twentyYrSavings = rec ? Math.round(annualSavings * 20 - rec.price) : 0;
+    const monthlyPayments = rec && rec.price / 12
 
     function seePaymentPlan() {
         console.log("hii")
@@ -207,8 +208,8 @@ export default function BillCalculator() {
                                             ?
                                             <div className="flex-1 flex gap-2">
 
-                                                <PaymentButtonWrapper total={10000} />
-                                                <PaySmallWrapper />
+                                                <PaymentButtonWrapper total={rec.price * 100} />
+                                                <PaySmallWrapper month={12} systemPrice={rec.price} amount={Math.floor(rec.price / 12)} />
                                             </div>
                                             :
                                             <a
