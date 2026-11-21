@@ -51,12 +51,12 @@ export default function Hero() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
                         <a
-                            href="/quote"
+                            href="#savings-calculator"
                             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold text-white transition-all hover:brightness-110 active:scale-95"
                             style={{ backgroundColor: "#F97316" }}
                         >
-                            Get a Free Quote
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                            Savings Calculator ↓
+                            {/* <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg> */}
                         </a>
                         <a
                             href="#pay-small"

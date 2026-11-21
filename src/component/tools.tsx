@@ -23,7 +23,7 @@ const teasers = [
 
 export default function Tools() {
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white" id="savings-calculator">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-14">
                     <p className="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-2">Free Tools</p>
