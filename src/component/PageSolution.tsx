@@ -2,6 +2,8 @@
 import { Solution } from "@/types";
 import { useState } from "react";
 import Link from "next/link";
+import PaymentButtonWrapper from "./ui/PaymentButtonWrapper";
+import PaySmallWrapper from "./ui/PaySmallWrapper";
 
 function fmt(n: number) {
     return "₦" + n.toLocaleString("en-NG");
@@ -121,9 +123,10 @@ export default function PageSolution({ solution }: { solution: Solution }) {
                                             <p className="text-slate-900 font-bold text-4xl">{fmt(sys.price)}</p>
                                             <p className="text-slate-400 text-xs mt-2">Includes installation + 1-yr support</p>
                                         </div>
-                                        <Link href="/quote" className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110" style={{ backgroundColor: "#F97316" }}>
+                                        {/* <Link href="/quote" className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110" style={{ backgroundColor: "#F97316" }}>
                                             Order Now — {fmt(sys.price)}
-                                        </Link>
+                                        </Link> */}
+                                        <PaymentButtonWrapper total={sys.price * 100} />
                                     </div>
                                 ) : (
                                     <div className="space-y-4">
@@ -146,9 +149,10 @@ export default function PageSolution({ solution }: { solution: Solution }) {
                                             </div>
                                             <p className="text-orange-500 text-xs border-t border-orange-200 pt-2">0% interest · 0 hidden fees</p>
                                         </div>
-                                        <Link href="/quote?plan=installment" className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110" style={{ backgroundColor: "#F97316" }}>
+                                        {/* <Link href="/quote?plan=installment" className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110" style={{ backgroundColor: "#F97316" }}>
                                             Apply for Installment Plan
-                                        </Link>
+                                        </Link> */}
+                                        <PaySmallWrapper month={months} systemPrice={sys.price} amount={deposit} />
                                     </div>
                                 )}
                                 <Link href="/quote" className="flex items-center justify-center text-sm text-slate-400 hover:text-slate-600 transition-colors py-3">

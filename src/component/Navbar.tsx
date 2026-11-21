@@ -71,10 +71,10 @@ export default function Navbar() {
         <div className="bg-[#0F172A] px-4 py-3 md:px-16 fixed left-0 right-0 z-200 w-full ">
             <div className="md:flex  justify-between items-center ">
                 <div id="logo-bugger" className="flex  justify-between items-center">
-                    <div className="flex items-center gap-2">
+                    <Link href={"/"} className="flex items-center gap-2 cursor-pointer">
                         <Company_logo />
                         <span className="font-bold text-white text-lg ">SolaraEnergy</span>
-                    </div>
+                    </Link>
                     <button className="space-y-[5px] outline-none  md:hidden" onClick={() => setOpenMenu(!openMenu)}>
                         <div className={`bg-white w-[18px] h-[2px] transition-all duration-300 outline-none ${openMenu ? "rotate-45 translate-y-[7px]" : ""} `}></div>
                         <div className={`bg-white w-[18px] h-[2px] transition-all duration-300 outline-none ${openMenu ? "opacity-0" : ""} `}></div>

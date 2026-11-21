@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Product } from "@/types"
 import { createClient } from "@/lib/client"
 import PaymentButtonWrapper from "./ui/PaymentButtonWrapper"
+import PaySmallWrapper from "./ui/PaySmallWrapper"
 // import PaymentButton from "./ui/PaymentButton"
 
 
@@ -208,9 +209,10 @@ export default function ProductDetail({ product }: { product: Product }) {
                                                 <span>0% interest</span><span>0 hidden fees</span><span>Cancel anytime</span>
                                             </div>
                                         </div>
-                                        <Link href="/quote?plan=installment" className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110" style={{ backgroundColor: "#F97316" }}>
+                                        {/* <Link href="/quote?plan=installment" className="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110" style={{ backgroundColor: "#F97316" }}>
                                             Apply for Installment Plan
-                                        </Link>
+                                        </Link> */}
+                                        <PaySmallWrapper month={planMonths} systemPrice={variant.price} amount={deposit} />
                                     </div>
                                 )}
                                 <Link href="/quote" className="flex items-center justify-center text-sm text-slate-400 hover:text-slate-600 transition-colors py-3">

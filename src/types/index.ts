@@ -41,7 +41,7 @@ export interface Appliance {
 export interface Recommendation {
     maxWatts: number
     system: string
-    price: string
+    price: number
     panel: string
     battery: string
     inverter: string

@@ -220,13 +220,9 @@ export default function BillCalculator() {
                                                 See Payment Plans
                                             </a>
                                     }
-                                    <a
-                                        href="#"
-                                        className={`flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold text-white text-sm border border-white/20 hover:bg-white/10 transition-all ${plan && "hidden"}`}
-                                    >
-                                        Get Free Quote
-                                    </a>
-
+                                    <p className="text-white">
+                                        Note only 12 month payment plan is available for this section
+                                    </p>
                                 </div>
                                 <div>
                                     <p>

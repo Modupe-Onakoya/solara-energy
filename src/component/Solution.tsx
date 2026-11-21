@@ -30,15 +30,12 @@ export default function Solution() {
                         <p className="text-orange-500 font-semibold text-sm uppercase tracking-widest mb-2">Solutions</p>
                         <h2 className="text-slate-900 font-bold text-4xl">The Right Fit<br />for Every Need</h2>
                     </div>
-                    <Link href={"/"} className="inline-flex items-center gap-2 text-slate-500 text-sm hover:text-orange-500 transition-colors shrink-0">
-                        Explore all solutions
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </Link>
+
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-6">
                     {cards.map(({ to, image, title, desc }) => (
-                        <Link key={to} href={"/"} className="group rounded-2xl overflow-hidden border border-slate-100 bg-white hover:shadow-lg transition-all hover:-translate-y-1 duration-200">
+                        <Link key={to} href={to} className="group rounded-2xl overflow-hidden border border-slate-100 bg-white hover:shadow-lg transition-all hover:-translate-y-1 duration-200">
                             <div className="relative h-52 overflow-hidden bg-slate-200">
                                 <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

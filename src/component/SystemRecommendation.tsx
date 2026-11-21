@@ -3,6 +3,8 @@ import { appliances } from "@/data/appliance"
 import { useState } from "react"
 import { getRecommendation } from "@/utils/recommend"
 import { calcKw } from "@/utils/recommend"
+import PaymentButtonWrapper from "./ui/PaymentButtonWrapper"
+import PaySmallWrapper from "./ui/PaySmallWrapper"
 
 export default function SystemRecommendation() {
     const [selected, setSelected] = useState<string[]>([])
@@ -158,7 +160,7 @@ export default function SystemRecommendation() {
                             <div className="px-6 py-5" style={{ backgroundColor: "#0F172A" }}>
                                 <p className="text-slate-400 text-xs uppercase tracking-widest mb-1">Recommended System</p>
                                 <p className="text-white font-bold text-xl">{rec.system}</p>
-                                <p className="font-bold text-2xl mt-1" style={{ color: rec.color }}>{rec.price}</p>
+                                <p className="font-bold text-2xl mt-1" style={{ color: rec.color }}>From ₦{rec.price}</p>
                             </div>
 
                             <div className="bg-white px-6 py-5 space-y-3">
@@ -186,21 +188,26 @@ export default function SystemRecommendation() {
                                 </div>
 
                                 <div className="pt-3 space-y-2">
-                                    <a
+                                    {/* <a
                                         href="#pay-small"
                                         className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-semibold text-white text-sm transition-all hover:brightness-110"
                                         style={{ backgroundColor: "#F97316" }}
                                     >
                                         See Payment Plans
                                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                    </a>
-                                    <a
+                                    </a> */}
+                                    <PaymentButtonWrapper total={rec.price * 100} />
+                                    {/* <a
                                         href="#"
                                         className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-slate-600 text-sm border border-slate-200 hover:bg-slate-50 transition-all"
                                     >
                                         Get Exact Quote
-                                    </a>
+                                    </a> */}
+                                    <PaySmallWrapper month={12} systemPrice={rec.price} amount={Math.floor(rec.price / 12)} />
                                 </div>
+                                <p>
+                                    Note only 12 month payment plan is available for the installment plan
+                                </p>
                             </div>
                         </div>
                     )}
