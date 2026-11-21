@@ -7,7 +7,6 @@ import HomePaySmallSmall from "@/component/HomePaySmallSmall";
 import HomeProducts from "@/component/HomeProduct";
 import Installers from "@/component/Installer";
 import Navbar from "@/component/Navbar";
-import Pay from "@/component/Pay";
 import PaySmallSmall from "@/component/PaySmallSmall";
 import Practise from "@/component/Practise";
 import Product from "@/component/Product";
@@ -29,7 +28,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <HomeProducts />
-      {/* <PaySmallWrapper /> */}
       <Solution />
       <Tools />
       <HomePaySmall />
